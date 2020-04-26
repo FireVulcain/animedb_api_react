@@ -1,38 +1,282 @@
-.App {
-  text-align: center;
+:root {
+    --color-background: 19, 23, 29;
+    --color-foreground: 31, 35, 45;
+    --color-foreground-grey: 25, 29, 38;
+    --color-foreground-grey-dark: 16, 20, 25;
+    --color-foreground-blue: 25, 29, 38;
+    --color-foreground-blue-dark: 19, 23, 29;
+    --color-overlay: 41, 41, 41;
+    --color-shadow: 49, 54, 68;
+    --color-shadow-dark: 6, 13, 34;
+    --color-text: 159, 173, 189;
+    --color-text-light: 129, 140, 153;
+    --color-text-lighter: 133, 150, 165;
+    --color-scroll-bar: 133, 150, 165;
+    --color-text-bright: 237, 241, 245;
+    --color-blue: 61, 180, 242;
+    --color-blue-dim: 141, 178, 219;
+    --color-white: 255, 255, 255;
+    --color-red: 232, 93, 117;
+    --color-peach: 250, 122, 122;
+    --color-orange: 247, 154, 99;
+    --color-yellow: 247, 191, 99;
+    --color-green: 93, 193, 47;
+    --color-purple: 158, 82, 255;
+}
+body,
+html {
+    background: rgb(var(--color-background));
+}
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.section-heading {
+    display: grid;
+    color: rgb(var(--color-white));
+    font-size: 1.7rem;
+    font-weight: 600;
+    grid-column-gap: 50px;
+    grid-template-columns: repeat(3, minmax(390px, 460px));
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#anime {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-row-gap: 40px;
+    grid-template-columns: repeat(3, minmax(390px, 460px));
+    grid-template-rows: repeat(auto-fill, 265px);
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+}
+#anime .container {
+    background: rgb(var(--color-foreground));
+    border-radius: 3px;
+    box-shadow: 0 4px 6px rgba(49, 54, 68, 0.05), 0 5px 20px rgba(49, 54, 68, 0.08);
+    display: inline-grid;
+    grid-template-columns: 185px auto;
+    height: 265px;
+    min-width: 370px;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    transition: box-shadow 0.6s ease;
+}
+#anime .container > a {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 10;
+}
+#anime .container .overlay {
+    background: rgba(var(--color-overlay), 0.9);
+    color: rgb(var(--color-text-bright));
+    padding: 12px;
+    position: relative;
+    width: 100%;
+    font-weight: 600;
+}
+#anime .container .overlay p {
+    margin: 0;
+    color: rgb(var(--color-white));
+    transition: color 0.3s;
+    outline: 0;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
+}
+#anime .container img {
+    object-fit: cover;
+    object-position: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#anime .data {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto 44px;
+    min-height: 0;
+    min-width: 0;
+}
+#anime .data .scroller {
+    position: relative;
+    overflow: hidden;
+}
+#anime .data .scroller-wrap {
+    display: block;
+    overflow: hidden scroll;
+    height: 100%;
+    width: 100%;
+    box-sizing: content-box;
+    padding-right: 20px;
+}
+#anime .data .body {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding-bottom: 10px;
+    position: relative;
+    padding: 17px;
+}
+#anime .data .body .header {
+    display: grid;
+    grid-template-columns: auto 60px;
+    opacity: 1;
+    transition: transform 0.4s ease-in-out, opacity 0.25s ease-in-out;
+    z-index: 2;
+}
+#anime .data .body .header .icon-stats .icon-stat {
+    padding-bottom: 10px;
+    line-height: 0;
+}
+#anime .data .body .header .icon-stats svg {
+    width: 18px;
+    vertical-align: middle;
+}
+#anime .data .body .header .icon-stats .stat {
+    color: rgb(var(--color-text-light));
+    font-size: 0.8rem;
+    font-weight: 700;
+    min-width: 35px;
+    padding-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
+}
+#anime .data .body .header .episode {
+    color: rgb(var(--color-text-light));
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+#anime .data .body .header .countdown,
+#anime .data .body .external-links-wrap .hashtag {
+    color: rgb(var(--color-text-light));
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding-top: 3px;
+    transition: color 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#anime .data .body .header .source {
+    display: inline-block;
+    color: rgb(var(--color-text-light));
+    font-size: 0.8rem;
+    overflow: hidden;
+    padding-top: 3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-transform: capitalize;
+}
+#anime .data .body .description-wrap,
+#anime .data .body .description-wrap span {
+    color: rgb(var(--color-text-light));
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin-top: 6px;
+    transition: color 0.2s;
+}
+#anime .data .footer {
+    display: flex;
+    align-items: center;
+    background: rgb(var(--color-foreground-blue));
+    padding: 0 17px;
+    padding-right: 14px;
+}
+#anime .data .footer .genres {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 20px;
+    overflow: hidden;
+}
+#anime .data .footer .genre {
+    background: hsl(215, 81%, 56%);
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    height: 20px;
+    margin-right: 11px;
+    padding: 0 12px;
+    text-transform: lowercase;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#anime .data .body .external-links-wrap {
+    display: grid;
+    padding: 17px;
+    grid-template-columns: auto 75px;
+    height: 7.6rem;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out, opacity 0.25s ease-in-out;
+    width: 100%;
+}
+#anime .data .body .external-links-wrap .hashtag {
+    display: inline-block;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+#anime .data .body .external-links-wrap .hashtag:hover {
+    color: hsl(215, 81%, 56%);
+}
+#anime .data .body .external-links-wrap .trailer {
+    align-items: center;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    position: relative;
+    width: 75px;
 }
 
-.App-link {
-  color: #61dafb;
+#anime .data .body:hover .header {
+    opacity: 0 !important;
+    transform: translateX(-100%);
+}
+#anime .data .body:hover .external-links-wrap {
+    opacity: 1;
+    transform: translateX(0);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* external link */
+.external-link {
+    align-content: center;
+    background: #515381;
+    border-radius: 3px;
+    display: inline-flex;
+    height: 23px;
+    justify-content: center;
+    margin-right: 7px;
+    width: 23px;
+}
+.external-link svg {
+    width: 14px;
+}
+.external-links .external-link.twitter {
+    background: rgb(var(--color-blue));
+}
+
+.external-links .external-link.crunchyroll {
+    background: rgb(var(--color-orange));
 }
