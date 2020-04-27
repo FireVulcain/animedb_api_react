@@ -22,9 +22,7 @@ class Header extends Component {
                         </div>
                     )}
 
-                    <div>
-                        <div className="source">Source • {element.source.toLowerCase()}</div>
-                    </div>
+                    <div>{element.source ? <div className="source">Source • {element.source.toLowerCase()}</div> : null}</div>
                 </div>
                 <div className="icon-stats">
                     {element.averageScore ? (

@@ -31,8 +31,63 @@ html {
     box-sizing: border-box;
     text-decoration: none;
 }
+
+/* nav */
+header {
+    background: #2b2d42;
+    color: #fff;
+    height: 233px;
+    width: 100%;
+    padding-top: 40px;
+    position: relative;
+}
+header .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    margin: 0 12vw;
+    position: relative;
+    z-index: 30;
+}
+header .wrap .logo-link img {
+    width: 49px;
+}
+header .wrap .seasons {
+    display: flex;
+}
+header .wrap .seasons .season {
+    color: #bcbedc;
+    text-align: center;
+    width: 90px;
+}
+header .wrap .seasons .season.active {
+    color: #fff;
+}
+header .wrap .seasons .season .season-name {
+    font-size: 1rem;
+    font-weight: 600;
+}
+header .wrap .seasons .season .season-year {
+    color: #8b8fb6;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+/* Home */
+#root > div.main-content {
+    position: relative;
+    margin-top: -110px;
+    z-index: 60;
+}
+#root > div.main-content > div {
+    margin: 0 5vw;
+}
+#root > div > section {
+    margin-bottom: 60px;
+}
 .section-heading {
     display: grid;
+    margin-top: 0;
     color: rgb(var(--color-white));
     font-size: 1.7rem;
     font-weight: 600;
@@ -183,7 +238,7 @@ html {
 #anime .data .body .description-wrap,
 #anime .data .body .description-wrap span {
     color: rgb(var(--color-text-light));
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 1.6;
     margin-top: 6px;
     transition: color 0.2s;
@@ -250,6 +305,11 @@ html {
     width: 75px;
 }
 
+/* hover */
+
+#anime .container:hover {
+    box-shadow: 0 4px 6px rgba(49, 54, 68, 0.09), 0 10px 40px rgba(49, 54, 68, 0.3);
+}
 #anime .data .body:hover .header {
     opacity: 0 !important;
     transform: translateX(-100%);
@@ -279,4 +339,76 @@ html {
 
 .external-links .external-link.crunchyroll {
     background: rgb(var(--color-orange));
+}
+
+/* react-loading-skeleton */
+.react-loading-skeleton {
+    line-height: normal !important;
+}
+.skeleton-title,
+.skeleton-text {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.skeleton-title span,
+.skeleton-text span {
+    display: block;
+}
+.skeleton-title {
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.skeleton-text > span {
+    margin: 0 0 20px;
+}
+.skeleton-text > span:nth-child(1) {
+    width: 90%;
+}
+.skeleton-text > span:nth-child(2) {
+    width: 70%;
+}
+.skeleton-text > span:nth-child(3) {
+    width: 60%;
+}
+
+/* reponsive */
+@media screen and (max-width: 1560px) {
+    #anime {
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+    #root > div.main-content > div {
+        margin: 0 1vw;
+    }
+    .section-heading {
+        grid-column-gap: 20px;
+    }
+}
+@media screen and (max-width: 1345px) {
+    #anime {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 40px;
+        grid-row-gap: 40px;
+    }
+    #root > div.main-content > div {
+        margin: 0 10vw;
+    }
+    .section-heading {
+        grid-template-columns: 1fr 0 1fr;
+    }
+}
+@media screen and (max-width: 1130px) {
+    #root > div.main-content > div {
+        margin: 0 5vw;
+    }
+}
+@media screen and (max-width: 1050px) {
+    #anime {
+        grid-template-columns: 1fr;
+    }
+    #root > div.main-content > div {
+        margin: 0 15vw;
+    }
 }

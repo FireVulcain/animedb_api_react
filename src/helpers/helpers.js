@@ -3,25 +3,46 @@ import React from "react";
 export function diffBetweenDates(future, now, startDate) {
     let delta = Math.abs(future - now) / 1000;
 
+    let month = Math.floor(delta / 2.628e6);
+    delta -= month * 2.628e6;
+
     let days = Math.floor(delta / 86400);
     delta -= days * 86400;
 
     let hours = Math.floor(delta / 3600) % 24;
     delta -= hours * 3600;
 
-    var minutes = Math.floor(delta / 60) % 60;
+    let minutes = Math.floor(delta / 60) % 60;
     delta -= minutes * 60;
 
-    if (days === 0) {
-        return `${hours} hours, ${minutes} mins`;
-    } else if (days > 14) {
-        return firstAiringDate(startDate);
-    } else if (hours === 0 && minutes > 0) {
-        return `${days} days, ${minutes} mins`;
-    } else if (minutes === 0 && hours === 0) {
-        return `${days} days`;
-    } else {
-        return `${days} days, ${hours} hours`;
+    let monthText = month > 1 ? `${month} months` : `${month} month`;
+    let daysText = days > 1 ? `${days} days` : `${days} day`;
+    let hoursText = hours > 1 ? `${hours} hours` : `${hours} hour`;
+    let minutesText = minutes > 1 ? `${minutes} mins` : `${minutes} min`;
+
+    switch (true) {
+        case month > 0 && days > 0:
+            return `${monthText}, ${daysText}`;
+        case month > 0 && days === 0 && hours > 0:
+            return `${monthText}, ${hoursText}`;
+        case month > 0 && days === 0 && hours === 0 && minutes > 0:
+            return `${monthText}, ${minutesText}`;
+        case month > 0:
+            return `${monthText}`;
+        case days > 0 && hours > 0:
+            return `${daysText}, ${hoursText}`;
+        case days > 0 && hours === 0 && minutes > 0:
+            return `${daysText}, ${minutesText}`;
+        case days > 0:
+            return `${daysText}`;
+        case hours > 0 && minutes > 0:
+            return `${hoursText}, ${minutesText}`;
+        case hours > 0:
+            return `${daysText}`;
+        case minutes > 0:
+            return `${minutesText}`;
+        default:
+            return `Airing now`;
     }
 }
 export function firstAiringDate(date) {
@@ -40,19 +61,21 @@ export function firstAiringDate(date) {
     listMonth[12] = "December";
     let month = listMonth[date.month];
 
-    return `${month} ${date.day}, ${date.year}`;
+    let day = date.day ? " " + date.day : "";
+
+    return `${month}${day}, ${date.year}`;
 }
 
 export function currentSeason() {
     const d = new Date();
     let seasonArray = [
-        { name: "SPRING", date: new Date(d.getFullYear(), 2, d.getFullYear() % 4 === 0 ? 19 : 20).getTime() },
-        { name: "SUMMER", date: new Date(d.getFullYear(), 5, d.getFullYear() % 4 === 0 ? 20 : 21).getTime() },
-        { name: "FALL", date: new Date(d.getFullYear(), 8, d.getFullYear() % 4 === 0 ? 22 : 23).getTime() },
-        { name: "WINTER", date: new Date(d.getFullYear(), 11, d.getFullYear() % 4 === 0 ? 20 : 21).getTime() },
+        { name: "SPRING", date: new Date(d.getFullYear(), 2, d.getFullYear() % 4 === 0 ? 19 : 20).getTime(), url: "/Spring-2020" },
+        { name: "SUMMER", date: new Date(d.getFullYear(), 5, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(), url: "/Summer-2020" },
+        { name: "FALL", date: new Date(d.getFullYear(), 8, d.getFullYear() % 4 === 0 ? 22 : 23).getTime(), url: "/Fall-2020" },
+        { name: "WINTER", date: new Date(d.getFullYear(), 11, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(), url: "/Winter-2020" },
     ];
     const season = seasonArray.filter(({ date }) => date <= d).slice(-1)[0];
-    return season.name;
+    return season;
 }
 
 export function airingIn(airingSchedule, episodes) {
