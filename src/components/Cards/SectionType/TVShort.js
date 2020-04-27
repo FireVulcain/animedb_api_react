@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-import Header from "../Header";
-import ExternalLinks from "../ExternalLinks";
-
+/* Components */
 import SkeletonLoader from "./../../Skeleton/Skeleton";
+import Cards from "./../Cards";
 
 export default class TVShort extends Component {
     constructor(props) {
@@ -95,7 +94,7 @@ export default class TVShort extends Component {
                 });
             })
             .then((data) => {
-                let datas = data.data.Page.media.sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
+                let datas = data.data.Page.media;
                 this.setState({ data: datas });
             })
             .catch((error) => {
@@ -106,55 +105,7 @@ export default class TVShort extends Component {
         return (
             <section>
                 <h2 className="section-heading">TV Short</h2>
-                {!this.state.data.length > 0 ? (
-                    <SkeletonLoader />
-                ) : (
-                    <div id="anime">
-                        {this.state.data.map((element, key) => {
-                            // console.log(element);
-                            return (
-                                <div className="container" key={key}>
-                                    <a href={`anime/${element.id}`}>
-                                        <img src={element.coverImage.large} alt={element.title.romaji} />
-                                        <div className="overlay">
-                                            <p>{element.title.romaji}</p>
-                                        </div>
-                                    </a>
-                                    <div className="data">
-                                        <div className="scroller">
-                                            <div className="scroller-wrap">
-                                                <div className="body">
-                                                    <Header element={element} index={key} />
-                                                    <ExternalLinks element={element} />
-                                                    <div className="description-wrap">
-                                                        <span
-                                                            className="description"
-                                                            dangerouslySetInnerHTML={{
-                                                                __html: element.description,
-                                                            }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="footer">
-                                            <div className="genres">
-                                                {element.genres.map((genre, key) => {
-                                                    return (
-                                                        <div className="genre" key={key}>
-                                                            {genre}
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                )}
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tvShort" />}
             </section>
         );
     }

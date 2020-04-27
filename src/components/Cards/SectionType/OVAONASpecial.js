@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-import Header from "../Header";
-import ExternalLinks from "../ExternalLinks";
-
+/* Components */
 import SkeletonLoader from "./../../Skeleton/Skeleton";
+import Cards from "./../Cards";
 
 export default class OVAONASpecial extends Component {
     constructor(props) {
@@ -127,56 +126,7 @@ export default class OVAONASpecial extends Component {
         return (
             <section>
                 <h2 className="section-heading">OVA / ONA / Special</h2>
-                {!this.state.data.length > 0 ? (
-                    <SkeletonLoader />
-                ) : (
-                    <div id="anime">
-                        {this.state.data
-                            .sort((a, b) => (a.popularity > b.popularity ? -1 : 1))
-                            .map((element, key) => {
-                                return (
-                                    <div className="container" key={key}>
-                                        <a href={`anime/${element.id}`}>
-                                            <img src={element.coverImage.large} alt={element.title.romaji} />
-                                            <div className="overlay">
-                                                <p>{element.title.romaji}</p>
-                                            </div>
-                                        </a>
-                                        <div className="data">
-                                            <div className="scroller">
-                                                <div className="scroller-wrap">
-                                                    <div className="body">
-                                                        <Header element={element} index={key} />
-                                                        <ExternalLinks element={element} />
-                                                        <div className="description-wrap">
-                                                            <span
-                                                                className="description"
-                                                                dangerouslySetInnerHTML={{
-                                                                    __html: element.description,
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="footer">
-                                                <div className="genres">
-                                                    {element.genres.map((genre, key) => {
-                                                        return (
-                                                            <div className="genre" key={key}>
-                                                                {genre}
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                    </div>
-                )}
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="ovaOnaSpecial" />}
             </section>
         );
     }

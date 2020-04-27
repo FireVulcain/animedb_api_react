@@ -63,14 +63,19 @@ header .wrap .seasons .season {
 header .wrap .seasons .season.active {
     color: #fff;
 }
+
 header .wrap .seasons .season .season-name {
     font-size: 1rem;
     font-weight: 600;
 }
 header .wrap .seasons .season .season-year {
     color: #8b8fb6;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-weight: 400;
+    margin-top: 2px;
+}
+header .wrap .seasons .season.active .season-year {
+    color: #a2a6cd;
 }
 
 /* Home */
@@ -89,8 +94,8 @@ header .wrap .seasons .season .season-year {
     display: grid;
     margin-top: 0;
     color: rgb(var(--color-white));
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
     grid-column-gap: 50px;
     grid-template-columns: repeat(3, minmax(390px, 460px));
     justify-content: center;
@@ -177,6 +182,17 @@ header .wrap .seasons .season .season-year {
     width: 100%;
     box-sizing: content-box;
     padding-right: 20px;
+}
+#anime .data > div > div:nth-child(1) {
+    margin-right: -20px !important;
+}
+#anime .data > div > div:nth-child(2) {
+    display: none !important;
+}
+#anime .data > div > div:nth-child(3) {
+    top: 7px !important;
+    bottom: 7px !important;
+    right: 5px !important;
 }
 #anime .data .body {
     display: flex;
@@ -410,5 +426,10 @@ header .wrap .seasons .season .season-year {
     }
     #root > div.main-content > div {
         margin: 0 15vw;
+    }
+}
+@media screen and (max-width: 800px) {
+    #root > div.main-content > div {
+        margin: 0 10px;
     }
 }
