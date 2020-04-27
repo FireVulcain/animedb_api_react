@@ -79,16 +79,13 @@ export function currentSeason() {
 }
 
 export function airingIn(airingSchedule, episodes) {
-    let alreadyAired = 1;
-    for (let i = 0; i < airingSchedule.edges.length; i++) {
-        if (airingSchedule.edges[i].node.timeUntilAiring < 0) {
-            alreadyAired++;
+    if (airingSchedule.nodes[0]) {
+        let nextAired = airingSchedule.nodes[0].episode;
+        if (episodes) {
+            return `Ep ${nextAired} of ${episodes} airing in`;
+        } else {
+            return `Ep ${nextAired} airing in`;
         }
-    }
-    if (episodes) {
-        return `Ep ${alreadyAired} of ${episodes} airing in`;
-    } else {
-        return `Ep ${alreadyAired} airing in`;
     }
 }
 export function averageScore(averageScore) {

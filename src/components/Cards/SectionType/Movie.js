@@ -44,13 +44,11 @@ export default class Movie extends Component {
                             month
                             day
                         }
-                        airingSchedule {
-                            edges {
-                                node{
-                                    timeUntilAiring
-                                }
+                        airingSchedule( notYetAired: true perPage: 2) {
+                            nodes {
+                                episode airingAt
                             }
-                          }
+                        }
                         averageScore
                         trailer{
                             id

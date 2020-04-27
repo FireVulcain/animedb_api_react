@@ -87,7 +87,7 @@ header .wrap .seasons .season.active .season-year {
 #root > div.main-content > div {
     margin: 0 5vw;
 }
-#root > div > section {
+#root > div.main-content section {
     margin-bottom: 60px;
 }
 .section-heading {
@@ -233,7 +233,7 @@ header .wrap .seasons .season.active .season-year {
 }
 #anime .data .body .header .countdown,
 #anime .data .body .external-links-wrap .hashtag {
-    color: rgb(var(--color-text-light));
+    color: rgb(var(--color-text));
     font-size: 1.1rem;
     font-weight: 600;
     padding-top: 3px;
@@ -242,8 +242,8 @@ header .wrap .seasons .season.active .season-year {
 
 #anime .data .body .header .source {
     display: inline-block;
-    color: rgb(var(--color-text-light));
-    font-size: 0.8rem;
+    color: rgb(var(--color-text));
+    font-size: 0.75rem;
     overflow: hidden;
     padding-top: 3px;
     text-overflow: ellipsis;
@@ -278,9 +278,10 @@ header .wrap .seasons .season.active .season-year {
     border-radius: 10px;
     color: #fff;
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     height: 20px;
+    line-height: 20px;
     margin-right: 11px;
     padding: 0 12px;
     text-transform: lowercase;

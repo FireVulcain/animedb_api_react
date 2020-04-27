@@ -4,14 +4,13 @@ import React, { Component } from "react";
 import SkeletonLoader from "./../../Skeleton/Skeleton";
 import Cards from "./../Cards";
 
-export default class TVShort extends Component {
+export default class Leftovers extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: [],
         };
     }
-
     componentDidMount = () => {
         let query = `
             query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat) {
@@ -23,7 +22,7 @@ export default class TVShort extends Component {
                         hasNextPage
                         perPage
                     }
-                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format) {
+                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, episodes_greater: 16) {
                         id
                         source
                         popularity
@@ -70,7 +69,7 @@ export default class TVShort extends Component {
             seasonYear: new Date().getFullYear(),
             page: 1,
             perPage: 50,
-            format: "TV_SHORT",
+            format: "TV",
         };
         let url = "https://graphql.anilist.co";
         let options = {
@@ -100,10 +99,11 @@ export default class TVShort extends Component {
             });
     };
     render() {
+        console.log(this.state.data);
         return (
             <section>
-                <h2 className="section-heading">TV Short</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tvShort" />}
+                <h2 className="section-heading">Leftovers</h2>
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="leftovers" />}
             </section>
         );
     }
