@@ -29,6 +29,22 @@ export default class Navbar extends Component {
                         </NavLink>
                     </div>
                     <div className="charts">
+                        <NavLink to="/archive" activeClassName="active">
+                            <svg version="1.1" viewBox="0 0 18 18" className="svg-icon" aria-label="Archive" style={{ width: "18px" }}>
+                                <g clipPath="url(#clip0)" _stroke="#EDF1F5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path
+                                        pid="0"
+                                        d="M15.75 6v8.75a1 1 0 0 1-1 1H3.25a1 1 0 0 1-1-1V6M16.25 2.25H1.75a1 1 0 0 0-1 1V5a1 1 0 0 0 1 1h14.5a1 1 0 0 0 1-1V3.25a1 1 0 0 0-1-1zM7.5 9h3"
+                                    ></path>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <path pid="1" _fill="#fff" d="M0 0h18v18H0z"></path>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <div className="label">Archive</div>
+                        </NavLink>
                         <NavLink to="/tba" activeClassName="active">
                             <svg version="1.1" viewBox="0 0 17 15" className="svg-icon" style={{ width: "18px" }}>
                                 <path
