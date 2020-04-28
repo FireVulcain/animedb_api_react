@@ -23,7 +23,7 @@ export default class Movie extends Component {
     };
     async fetchData() {
         let query = `
-            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat) {
+            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $status : MediaStatus) {
                 Page (page: $page, perPage: $perPage) {
                     pageInfo {
                         total
@@ -32,7 +32,7 @@ export default class Movie extends Component {
                         hasNextPage
                         perPage
                     }
-                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format) {
+                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, status: $status) {
                         id
                         source
                         popularity
@@ -42,6 +42,7 @@ export default class Movie extends Component {
                         coverImage {
                             large
                         }
+                        bannerImage
                         description
                         genres
                         nextAiringEpisode{
@@ -80,13 +81,18 @@ export default class Movie extends Component {
             }
             `;
         let variables = {
-            season: this.props.season,
-            seasonYear: this.props.year,
+            season: this.props.season ? this.props.season : null,
             page: 1,
             perPage: 50,
             format: "MOVIE",
         };
-        let url = "https://graphql.anilist.co";
+        if (this.props.year) {
+            variables.seasonYear = this.props.year;
+        }
+        if (this.props.status) {
+            variables.status = this.props.status;
+        }
+
         let allData = [];
         let morePagesAvailable = true;
         let currentPage = 0;
@@ -106,7 +112,7 @@ export default class Movie extends Component {
                 }),
             };
 
-            const response = await fetch(url, options);
+            const response = await fetch(window.$url, options);
             let { data } = await response.json();
             data.Page.media.forEach((e) => allData.push(e));
             morePagesAvailable = data.Page.pageInfo.hasNextPage;

@@ -86,7 +86,7 @@ export default class OVAONASpecial extends Component {
             perPage: 50,
             excludeFormat: "TV",
         };
-        let url = "https://graphql.anilist.co";
+
         let allData = [];
         let morePagesAvailable = true;
         let currentPage = 0;
@@ -106,7 +106,7 @@ export default class OVAONASpecial extends Component {
                 }),
             };
 
-            const response = await fetch(url, options);
+            const response = await fetch(window.$url, options);
             let { data } = await response.json();
 
             data.Page.media.forEach((e) => {

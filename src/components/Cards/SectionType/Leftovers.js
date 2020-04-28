@@ -85,7 +85,7 @@ export default class Leftovers extends Component {
             perPage: 50,
             format: "TV",
         };
-        let url = "https://graphql.anilist.co";
+
         let allData = [];
         let morePagesAvailable = true;
         let currentPage = 0;
@@ -105,7 +105,7 @@ export default class Leftovers extends Component {
                 }),
             };
 
-            const response = await fetch(url, options);
+            const response = await fetch(window.$url, options);
             let { data } = await response.json();
             data.Page.media.forEach((e) => allData.push(e));
             morePagesAvailable = data.Page.pageInfo.hasNextPage;

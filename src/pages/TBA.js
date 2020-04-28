@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import TV from "../components/TBA/TV";
-import TVShort from "../components/TBA/TVShort";
-import Movie from "../components/TBA/Movie";
+import TV from "../components/Cards/SectionType/TV";
+import TVShort from "../components/Cards/SectionType/TVShort";
+import Movie from "../components/Cards/SectionType/Movie";
 
 export default class TBA extends Component {
     render() {
