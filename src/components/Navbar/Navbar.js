@@ -11,19 +11,19 @@ export default class Navbar extends Component {
                         <img src={logo} alt="Logo Site" />
                     </a>
                     <div className="seasons">
-                        <NavLink to="/Winter-2020" className="season" activeClassName="active">
+                        <NavLink to="/winter/2020" className="season" activeClassName="active">
                             <div className="season-name">Winter</div>
                             <div className="season-year">2020</div>
                         </NavLink>
-                        <NavLink to="/Spring-2020" className="season" activeClassName="active">
+                        <NavLink to="/spring/2020" className="season" activeClassName="active">
                             <div className="season-name">Spring</div>
                             <div className="season-year">2020</div>
                         </NavLink>
-                        <NavLink to="/Summer-2020" className="season" activeClassName="active">
+                        <NavLink to="/summer/2020" className="season" activeClassName="active">
                             <div className="season-name">Summer</div>
                             <div className="season-year">2020</div>
                         </NavLink>
-                        <NavLink to="/Fall-2020" className="season" activeClassName="active">
+                        <NavLink to="/fall/2020" className="season" activeClassName="active">
                             <div className="season-name">Fall</div>
                             <div className="season-year">2020</div>
                         </NavLink>

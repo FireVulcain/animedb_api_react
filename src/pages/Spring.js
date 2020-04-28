@@ -8,14 +8,15 @@ import Leftovers from "../components/Cards/SectionType/Leftovers";
 export default class Spring extends Component {
     render() {
         const { currentSeason, season } = this.props;
+        const { year } = this.props.match.params;
         return (
             <div className="main-content">
                 <div>
-                    <TV season={this.props.season} />
-                    <TVShort season={this.props.season} />
-                    {currentSeason === season ? <Leftovers season="WINTER" /> : null}
-                    <Movie season={this.props.season} />
-                    <OVAONASpecial season={this.props.season} />
+                    <TV season={this.props.season} year={year} />
+                    <TVShort season={this.props.season} year={year} />
+                    {currentSeason === season ? <Leftovers season="WINTER" year={year} /> : null}
+                    <Movie season={this.props.season} year={year} />
+                    <OVAONASpecial season={this.props.season} year={year} />
                 </div>
             </div>
         );

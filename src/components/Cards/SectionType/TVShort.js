@@ -13,6 +13,15 @@ export default class TVShort extends Component {
     }
 
     componentDidMount = () => {
+        this.fetchData();
+    };
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.year !== this.props.year) {
+            this.setState({ data: [] });
+            this.fetchData();
+        }
+    };
+    fetchData = () => {
         let query = `
             query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat) {
                 Page (page: $page, perPage: $perPage) {
@@ -72,7 +81,7 @@ export default class TVShort extends Component {
             `;
         let variables = {
             season: this.props.season,
-            seasonYear: new Date().getFullYear(),
+            seasonYear: this.props.year,
             page: 1,
             perPage: 50,
             format: "TV_SHORT",

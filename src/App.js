@@ -19,10 +19,26 @@ function App() {
             <Navbar />
             <Switch>
                 <Route exact path="/" render={() => <Redirect to={currentSeason().url} />}></Route>
-                <Route exact path="/Winter-2020" component={() => <Winter currentSeason={currentSeason().name} season="WINTER" />}></Route>
-                <Route exact path="/Spring-2020" component={() => <Spring currentSeason={currentSeason().name} season="SPRING" />}></Route>
-                <Route exact path="/Summer-2020" component={() => <Summer currentSeason={currentSeason().name} season="SUMMER" />}></Route>
-                <Route exact path="/Fall-2020" component={() => <Fall currentSeason={currentSeason().name} season="FALL" />}></Route>
+                <Route
+                    exact
+                    path="/winter/:year(\d+)"
+                    render={(props) => <Winter {...props} currentSeason={currentSeason().name} season="WINTER" />}
+                ></Route>
+                <Route
+                    exact
+                    path="/spring/:year(\d+)"
+                    render={(props) => <Spring {...props} currentSeason={currentSeason().name} season="SPRING" />}
+                ></Route>
+                <Route
+                    exact
+                    path="/summer/:year(\d+)"
+                    render={(props) => <Summer {...props} currentSeason={currentSeason().name} season="SUMMER" />}
+                ></Route>
+                <Route
+                    exact
+                    path="/fall/:year(\d+)"
+                    render={(props) => <Fall {...props} currentSeason={currentSeason().name} season="FALL" />}
+                ></Route>
             </Switch>
         </Router>
     );
