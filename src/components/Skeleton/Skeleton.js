@@ -9,10 +9,10 @@ export default class SkeletonLoader extends Component {
         for (let i = 0; i < 9; i++) {
             items.push(
                 <div className="container" key={i}>
-                    <SkeletonTheme color="#202020" highlightColor="#292929">
+                    <SkeletonTheme color="#1a1e24" highlightColor="#1f232d">
                         <Skeleton width={185} height={265} duration={2} />
                     </SkeletonTheme>
-                    <SkeletonTheme color="#403f3f" highlightColor="#444">
+                    <SkeletonTheme color="#1a1e24" highlightColor="#2b3442">
                         <div className="skeleton-title">
                             <Skeleton height={40} duration={2} />
                         </div>

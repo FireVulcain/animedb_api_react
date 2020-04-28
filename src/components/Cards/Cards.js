@@ -7,6 +7,12 @@ import Header from "./Header";
 import ExternalLinks from "./ExternalLinks";
 
 export default class Cards extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loaded: false,
+        };
+    }
     handleMouseLeave = (e) => {
         let selector = document.querySelectorAll(`[data-element="${e.currentTarget.dataset.element}"] .data > div > div`);
         selector.forEach((el) => {
@@ -29,11 +35,16 @@ export default class Cards extends Component {
             }
         }
     };
+    handleImageLoaded = () => {
+        this.setState({ loaded: true });
+    };
     render() {
         const { data, type } = this.props;
+        const { loaded } = this.state;
         return (
             <div className="card-list">
                 {data
+                    .sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1))
                     .sort((a, b) => (a.popularity > b.popularity ? -1 : 1))
                     .map((element, key) => {
                         return (
@@ -46,9 +57,23 @@ export default class Cards extends Component {
                                 data-id={`${element.id}`}
                             >
                                 <a href={`anime/${element.id}`}>
-                                    <img src={element.coverImage.large} alt={element.title.romaji} />
+                                    <img
+                                        onLoad={this.handleImageLoaded}
+                                        className={loaded ? "loaded" : null}
+                                        src={element.coverImage.large}
+                                        alt={element.title.romaji}
+                                    />
                                     <div className="overlay">
-                                        <p>{element.title.romaji}</p>
+                                        <p className="title">{element.title.romaji}</p>
+                                        {element.studios ? (
+                                            element.studios.nodes.length > 0 ? (
+                                                <div className="studio">
+                                                    <p target="_blank" rel="noopener noreferrer">
+                                                        {element.studios.nodes[0].name}
+                                                    </p>
+                                                </div>
+                                            ) : null
+                                        ) : null}
                                     </div>
                                 </a>
                                 <div className="data">

@@ -59,6 +59,11 @@ export default class Leftovers extends Component {
                             url
                             site
                         }
+                        studios(isMain: true) {
+                            nodes {
+                                id name siteUrl
+                            }
+                        }
                     }
                 }
                 

@@ -61,6 +61,11 @@ export default class TV extends Component {
                             url
                             site
                         }
+                        studios(isMain: true) {
+                            nodes {
+                                id name siteUrl
+                            }
+                        }
                     }
                 }
                 

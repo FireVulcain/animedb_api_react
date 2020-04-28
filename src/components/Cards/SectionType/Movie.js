@@ -60,6 +60,11 @@ export default class Movie extends Component {
                             url
                             site
                         }
+                        studios(isMain: true) {
+                            nodes {
+                                id name siteUrl
+                            }
+                        }
                     }
                 }
                 
