@@ -63,7 +63,11 @@ export function firstAiringDate(date) {
     let month = date.month ? listMonth[date.month] : "";
     let day = date.day ? ", " + date.day : "";
 
-    return `${month}${day} ${date.year}`;
+    if (!date.year) {
+        return `TBA`;
+    } else {
+        return `${month}${day} ${date.year}`;
+    }
 }
 
 export function currentSeason() {

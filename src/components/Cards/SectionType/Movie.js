@@ -21,7 +21,7 @@ export default class Movie extends Component {
             this.fetchData();
         }
     };
-    fetchData = () => {
+    async fetchData() {
         let query = `
             query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat) {
                 Page (page: $page, perPage: $perPage) {
@@ -87,32 +87,32 @@ export default class Movie extends Component {
             format: "MOVIE",
         };
         let url = "https://graphql.anilist.co";
-        let options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({
-                query: query,
-                variables: variables,
-            }),
-        };
+        let allData = [];
+        let morePagesAvailable = true;
+        let currentPage = 0;
 
-        fetch(url, options)
-            .then((response) => {
-                return response.json().then(function (json) {
-                    return response.ok ? json : Promise.reject(json);
-                });
-            })
-            .then((data) => {
-                let datas = data.data.Page.media;
-                this.setState({ data: datas });
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    };
+        while (morePagesAvailable) {
+            currentPage++;
+            variables.page = currentPage;
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    query: query,
+                    variables: variables,
+                }),
+            };
+
+            const response = await fetch(url, options);
+            let { data } = await response.json();
+            data.Page.media.forEach((e) => allData.push(e));
+            morePagesAvailable = data.Page.pageInfo.hasNextPage;
+        }
+        return this.setState({ data: allData });
+    }
     render() {
         return (
             <section>

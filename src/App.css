@@ -90,6 +90,25 @@ header .wrap .seasons .season .season-year {
 header .wrap .seasons .season.active .season-year {
     color: #a2a6cd;
 }
+header .wrap .charts {
+    display: grid;
+    grid-gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+}
+header .wrap .charts .svg-icon {
+    color: #bcbedc;
+    vertical-align: middle;
+    fill: none;
+    stroke: currentColor;
+    display: inline-block;
+}
+header .wrap .charts .label {
+    color: #999ec7;
+    padding-top: 5px;
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
 
 /* Home */
 #root > div.main-content {

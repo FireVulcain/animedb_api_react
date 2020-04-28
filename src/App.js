@@ -12,6 +12,7 @@ import Winter from "./pages/Winter";
 import Spring from "./pages/Spring";
 import Summer from "./pages/Summer";
 import Fall from "./pages/Fall";
+import TBA from "./pages/TBA";
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                     path="/fall/:year(\d+)"
                     render={(props) => <Fall {...props} currentSeason={currentSeason().name} season="FALL" />}
                 ></Route>
+                <Route exact path="/tba" component={TBA} />
             </Switch>
         </Router>
     );

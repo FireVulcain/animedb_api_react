@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 /* Components */
-import SkeletonLoader from "./../../Skeleton/Skeleton";
-import Cards from "./../Cards";
+import SkeletonLoader from "./../Skeleton/Skeleton";
+import Cards from "./../Cards/Cards";
 
-export default class Leftovers extends Component {
+export default class TV extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +22,7 @@ export default class Leftovers extends Component {
     };
     async fetchData() {
         let query = `
-            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat) {
+            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $status : MediaStatus) {
                 Page (page: $page, perPage: $perPage) {
                     pageInfo {
                         total
@@ -31,7 +31,7 @@ export default class Leftovers extends Component {
                         hasNextPage
                         perPage
                     }
-                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, episodes_greater: 16) {
+                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, status: $status) {
                         id
                         source
                         popularity
@@ -41,6 +41,7 @@ export default class Leftovers extends Component {
                         coverImage {
                             large
                         }
+                        bannerImage
                         description
                         genres
                         nextAiringEpisode{
@@ -79,13 +80,15 @@ export default class Leftovers extends Component {
             }
             `;
         let variables = {
-            season: this.props.season,
-            seasonYear: this.props.year,
+            season: this.props.season ? this.props.season : null,
             page: 1,
             perPage: 50,
             format: "TV",
+            status: this.props.status,
         };
+
         let url = "https://graphql.anilist.co";
+
         let allData = [];
         let morePagesAvailable = true;
         let currentPage = 0;
@@ -110,13 +113,28 @@ export default class Leftovers extends Component {
             data.Page.media.forEach((e) => allData.push(e));
             morePagesAvailable = data.Page.pageInfo.hasNextPage;
         }
-        return this.setState({ data: allData });
+        return this.setState({ data: allData }, () => {
+            this.populateHeader();
+        });
     }
+    populateHeader = () => {
+        this.state.data.map((element) => {
+            if (element.bannerImage) {
+                var el = document.getElementById("navbar");
+                var elChild = document.createElement("div");
+                elChild.setAttribute("id", element.id);
+                elChild.setAttribute("class", "banner-image");
+                elChild.setAttribute("style", `background-image: url("${element.bannerImage}");`);
+                el.appendChild(elChild);
+            }
+            return false;
+        });
+    };
     render() {
         return (
             <section>
-                <h2 className="section-heading">Leftovers</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="leftovers" />}
+                <h2 className="section-heading">TV</h2>
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tv" />}
             </section>
         );
     }

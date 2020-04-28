@@ -20,9 +20,9 @@ export default class OVAONASpecial extends Component {
             this.fetchData();
         }
     };
-    fetchData = () => {
+    async fetchData() {
         let query = `
-            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat) {
+            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $excludeFormat: MediaFormat) {
                 Page (page: $page, perPage: $perPage) {
                     pageInfo {
                         total
@@ -31,8 +31,9 @@ export default class OVAONASpecial extends Component {
                         hasNextPage
                         perPage
                     }
-                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format) {
+                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, format_not: $excludeFormat) {
                         id
+                        format
                         source
                         popularity
                         title {
@@ -78,31 +79,21 @@ export default class OVAONASpecial extends Component {
                 
             }
             `;
-        let variables = [
-            {
-                season: this.props.season,
-                seasonYear: this.props.year,
-                page: 1,
-                perPage: 50,
-                format: "OVA",
-            },
-            {
-                season: this.props.season,
-                seasonYear: new Date().getFullYear(),
-                page: 1,
-                perPage: 50,
-                format: "ONA",
-            },
-            {
-                season: this.props.season,
-                seasonYear: new Date().getFullYear(),
-                page: 1,
-                perPage: 50,
-                format: "SPECIAL",
-            },
-        ];
-        variables.map((variable) => {
-            let url = "https://graphql.anilist.co";
+        let variables = {
+            season: this.props.season,
+            seasonYear: this.props.year,
+            page: 1,
+            perPage: 50,
+            excludeFormat: "TV",
+        };
+        let url = "https://graphql.anilist.co";
+        let allData = [];
+        let morePagesAvailable = true;
+        let currentPage = 0;
+
+        while (morePagesAvailable) {
+            currentPage++;
+            variables.page = currentPage;
             let options = {
                 method: "POST",
                 headers: {
@@ -111,28 +102,25 @@ export default class OVAONASpecial extends Component {
                 },
                 body: JSON.stringify({
                     query: query,
-                    variables: variable,
+                    variables: variables,
                 }),
             };
 
-            return fetch(url, options)
-                .then((response) => {
-                    return response.json().then(function (json) {
-                        return response.ok ? json : Promise.reject(json);
-                    });
-                })
-                .then((data) => {
-                    // console.log(data.data.Page.media);
-                    let datas = data.data.Page.media;
-                    this.setState((prevState) => ({
-                        data: prevState.data.concat(datas),
-                    }));
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        });
-    };
+            const response = await fetch(url, options);
+            let { data } = await response.json();
+
+            data.Page.media.forEach((e) => {
+                let avaibleFormat = ["OVA", "ONA", "SPECIAL"];
+                if (avaibleFormat.includes(e.format)) {
+                    allData.push(e);
+                }
+            });
+            morePagesAvailable = data.Page.pageInfo.hasNextPage;
+        }
+
+        return this.setState({ data: allData });
+    }
+
     render() {
         return (
             <section>

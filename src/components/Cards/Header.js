@@ -17,7 +17,7 @@ class Header extends Component {
                         </div>
                     ) : (
                         <div>
-                            <div className="episode">{element.episodes ? `${element.episodes} Episodes aired on` : "Aired on"}</div>
+                            <div className="episode">{element.episodes ? `${element.episodes} Episodes airing in` : "Airing in"}</div>
                             <div className="countdown">{firstAiringDate(element.startDate)}</div>
                         </div>
                     )}
