@@ -5,6 +5,7 @@ import SkeletonLoader from "./../../Skeleton/Skeleton";
 import Cards from "./../Cards";
 
 export default class OVAONASpecial extends Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -12,8 +13,12 @@ export default class OVAONASpecial extends Component {
         };
     }
     componentDidMount = () => {
+        this._isMounted = true;
         this.fetchData();
     };
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     componentDidUpdate = (prevProps) => {
         if (prevProps.year !== this.props.year) {
             this.setState({ data: [] });
@@ -118,7 +123,11 @@ export default class OVAONASpecial extends Component {
             morePagesAvailable = data.Page.pageInfo.hasNextPage;
         }
 
-        return this.setState({ data: allData });
+        if (this._isMounted) {
+            return this.setState({ data: allData });
+        } else {
+            return false;
+        }
     }
 
     render() {

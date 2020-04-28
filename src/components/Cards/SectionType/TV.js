@@ -5,6 +5,7 @@ import SkeletonLoader from "./../../Skeleton/Skeleton";
 import Cards from "./../Cards";
 
 export default class TV extends Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -12,8 +13,12 @@ export default class TV extends Component {
         };
     }
     componentDidMount = () => {
+        this._isMounted = true;
         this.fetchData();
     };
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     componentDidUpdate = (prevProps) => {
         if (prevProps.year !== this.props.year) {
             this.setState({ data: [] });
@@ -116,9 +121,13 @@ export default class TV extends Component {
             data.Page.media.forEach((e) => allData.push(e));
             morePagesAvailable = data.Page.pageInfo.hasNextPage;
         }
-        return this.setState({ data: allData }, () => {
-            this.populateHeader();
-        });
+        if (this._isMounted) {
+            return this.setState({ data: allData }, () => {
+                this.populateHeader();
+            });
+        } else {
+            return false;
+        }
     }
     populateHeader = () => {
         this.state.data.map((element) => {

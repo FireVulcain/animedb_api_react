@@ -5,6 +5,7 @@ import SkeletonLoader from "./../../Skeleton/Skeleton";
 import Cards from "./../Cards";
 
 export default class Leftovers extends Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -12,8 +13,12 @@ export default class Leftovers extends Component {
         };
     }
     componentDidMount = () => {
+        this._isMounted = true;
         this.fetchData();
     };
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     componentDidUpdate = (prevProps) => {
         if (prevProps.year !== this.props.year) {
             this.setState({ data: [] });
@@ -110,7 +115,11 @@ export default class Leftovers extends Component {
             data.Page.media.forEach((e) => allData.push(e));
             morePagesAvailable = data.Page.pageInfo.hasNextPage;
         }
-        return this.setState({ data: allData });
+        if (this._isMounted) {
+            return this.setState({ data: allData });
+        } else {
+            return false;
+        }
     }
     render() {
         return (

@@ -64,6 +64,10 @@ header .wrap {
 }
 header .wrap .logo-link img {
     width: 49px;
+    transition: 1s;
+}
+header .wrap .logo-link img:hover {
+    transform: rotate(360deg);
 }
 header .wrap .seasons {
     display: flex;
@@ -72,6 +76,10 @@ header .wrap .seasons .season {
     color: #bcbedc;
     text-align: center;
     width: 90px;
+    transition: color 0.2s;
+}
+header .wrap .seasons .season:hover {
+    color: #d3d5f3;
 }
 header .wrap .seasons .season.active {
     color: rgb(var(--color-white));
