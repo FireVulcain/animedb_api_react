@@ -33,6 +33,7 @@ export default class TV extends Component {
                         coverImage {
                             large
                         }
+                        bannerImage
                         description
                         genres
                         nextAiringEpisode{
@@ -93,11 +94,26 @@ export default class TV extends Component {
             })
             .then((data) => {
                 let datas = data.data.Page.media;
-                this.setState({ data: datas });
+                this.setState({ data: datas }, () => {
+                    this.populateHeader();
+                });
             })
             .catch((error) => {
                 console.error(error);
             });
+    };
+    populateHeader = () => {
+        this.state.data.map((element) => {
+            if (element.bannerImage) {
+                var el = document.getElementById("navbar");
+                var elChild = document.createElement("div");
+                elChild.setAttribute("id", element.id);
+                elChild.setAttribute("class", "banner-image");
+                elChild.setAttribute("style", `background-image: url("${element.bannerImage}");`);
+                el.appendChild(elChild);
+            }
+            return false;
+        });
     };
     render() {
         return (

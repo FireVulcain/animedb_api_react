@@ -25,6 +25,6 @@ export default class SkeletonLoader extends Component {
                 </div>
             );
         }
-        return <div id="anime">{items}</div>;
+        return <div className="card-list">{items}</div>;
     }
 }

@@ -59,11 +59,11 @@ export function firstAiringDate(date) {
     listMonth[10] = "October";
     listMonth[11] = "November";
     listMonth[12] = "December";
-    let month = listMonth[date.month];
 
-    let day = date.day ? " " + date.day : "";
+    let month = date.month ? listMonth[date.month] : "";
+    let day = date.day ? ", " + date.day : "";
 
-    return `${month}${day}, ${date.year}`;
+    return `${month}${day} ${date.year}`;
 }
 
 export function currentSeason() {

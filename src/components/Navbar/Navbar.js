@@ -5,7 +5,7 @@ import logo from "./logo.png";
 export default class Navbar extends Component {
     render() {
         return (
-            <header>
+            <header id="navbar">
                 <div className="wrap">
                     <a href="/" className="logo-link">
                         <img src={logo} alt="Logo Site" />

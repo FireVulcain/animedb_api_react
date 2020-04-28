@@ -41,6 +41,26 @@ header {
     padding-top: 40px;
     position: relative;
 }
+header .banner-image {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(100%);
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s ease-in-out;
+    width: 100%;
+    z-index: 10;
+}
+header .banner-image.active {
+    opacity: 0.1;
+}
+
 header .wrap {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -106,7 +126,7 @@ header .wrap .seasons .season.active .season-year {
     -ms-user-select: none;
     user-select: none;
 }
-#anime {
+.card-list {
     display: grid;
     grid-column-gap: 50px;
     grid-row-gap: 40px;
@@ -116,7 +136,7 @@ header .wrap .seasons .season.active .season-year {
     min-width: 0;
     width: 100%;
 }
-#anime .container {
+.card-list .container {
     background: rgb(var(--color-foreground));
     border-radius: 3px;
     box-shadow: 0 4px 6px rgba(49, 54, 68, 0.05), 0 5px 20px rgba(49, 54, 68, 0.08);
@@ -129,7 +149,7 @@ header .wrap .seasons .season.active .season-year {
     text-align: left;
     transition: box-shadow 0.6s ease;
 }
-#anime .container > a {
+.card-list .container > a {
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -137,7 +157,7 @@ header .wrap .seasons .season.active .season-year {
     position: relative;
     z-index: 10;
 }
-#anime .container .overlay {
+.card-list .container .overlay {
     background: rgba(var(--color-overlay), 0.9);
     color: rgb(var(--color-text-bright));
     padding: 12px;
@@ -145,7 +165,7 @@ header .wrap .seasons .season.active .season-year {
     width: 100%;
     font-weight: 600;
 }
-#anime .container .overlay p {
+.card-list .container .overlay p {
     margin: 0;
     color: rgb(var(--color-white));
     transition: color 0.3s;
@@ -154,7 +174,7 @@ header .wrap .seasons .season.active .season-year {
     position: relative;
     z-index: 10;
 }
-#anime .container img {
+.card-list .container img {
     object-fit: cover;
     object-position: center;
     opacity: 1;
@@ -164,18 +184,18 @@ header .wrap .seasons .season.active .season-year {
     height: 100%;
 }
 
-#anime .data {
+.card-list .data {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto 44px;
     min-height: 0;
     min-width: 0;
 }
-#anime .data .scroller {
+.card-list .data .scroller {
     position: relative;
     overflow: hidden;
 }
-#anime .data .scroller-wrap {
+.card-list .data .scroller-wrap {
     display: block;
     overflow: hidden scroll;
     height: 100%;
@@ -183,18 +203,18 @@ header .wrap .seasons .season.active .season-year {
     box-sizing: content-box;
     padding-right: 20px;
 }
-#anime .data > div > div:nth-child(1) {
+.card-list .data > div > div:nth-child(1) {
     margin-right: -20px !important;
 }
-#anime .data > div > div:nth-child(2) {
+.card-list .data > div > div:nth-child(2) {
     display: none !important;
 }
-#anime .data > div > div:nth-child(3) {
+.card-list .data > div > div:nth-child(3) {
     top: 7px !important;
     bottom: 7px !important;
     right: 5px !important;
 }
-#anime .data .body {
+.card-list .data .body {
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -202,22 +222,22 @@ header .wrap .seasons .season.active .season-year {
     position: relative;
     padding: 17px;
 }
-#anime .data .body .header {
+.card-list .data .body .header {
     display: grid;
     grid-template-columns: auto 60px;
     opacity: 1;
     transition: transform 0.4s ease-in-out, opacity 0.25s ease-in-out;
     z-index: 2;
 }
-#anime .data .body .header .icon-stats .icon-stat {
+.card-list .data .body .header .icon-stats .icon-stat {
     padding-bottom: 10px;
     line-height: 0;
 }
-#anime .data .body .header .icon-stats svg {
+.card-list .data .body .header .icon-stats svg {
     width: 18px;
     vertical-align: middle;
 }
-#anime .data .body .header .icon-stats .stat {
+.card-list .data .body .header .icon-stats .stat {
     color: rgb(var(--color-text-light));
     font-size: 0.8rem;
     font-weight: 700;
@@ -226,13 +246,13 @@ header .wrap .seasons .season.active .season-year {
     display: inline-block;
     vertical-align: middle;
 }
-#anime .data .body .header .episode {
+.card-list .data .body .header .episode {
     color: rgb(var(--color-text-light));
     font-size: 0.8rem;
     font-weight: 600;
 }
-#anime .data .body .header .countdown,
-#anime .data .body .external-links-wrap .hashtag {
+.card-list .data .body .header .countdown,
+.card-list .data .body .external-links-wrap .hashtag {
     color: rgb(var(--color-text));
     font-size: 1.1rem;
     font-weight: 600;
@@ -240,7 +260,7 @@ header .wrap .seasons .season.active .season-year {
     transition: color 0.3s;
 }
 
-#anime .data .body .header .source {
+.card-list .data .body .header .source {
     display: inline-block;
     color: rgb(var(--color-text));
     font-size: 0.75rem;
@@ -251,29 +271,29 @@ header .wrap .seasons .season.active .season-year {
     width: 100%;
     text-transform: capitalize;
 }
-#anime .data .body .description-wrap,
-#anime .data .body .description-wrap span {
+.card-list .data .body .description-wrap,
+.card-list .data .body .description-wrap span {
     color: rgb(var(--color-text-light));
     font-size: 0.7rem;
     line-height: 1.6;
     margin-top: 6px;
     transition: color 0.2s;
 }
-#anime .data .footer {
+.card-list .data .footer {
     display: flex;
     align-items: center;
     background: rgb(var(--color-foreground-blue));
     padding: 0 17px;
     padding-right: 14px;
 }
-#anime .data .footer .genres {
+.card-list .data .footer .genres {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
     height: 20px;
     overflow: hidden;
 }
-#anime .data .footer .genre {
+.card-list .data .footer .genre {
     background: hsl(215, 81%, 56%);
     border-radius: 10px;
     color: #fff;
@@ -287,7 +307,7 @@ header .wrap .seasons .season.active .season-year {
     text-transform: lowercase;
 }
 
-#anime .data .body .external-links-wrap {
+.card-list .data .body .external-links-wrap {
     display: grid;
     padding: 17px;
     grid-template-columns: auto 75px;
@@ -300,15 +320,15 @@ header .wrap .seasons .season.active .season-year {
     transition: transform 0.4s ease-in-out, opacity 0.25s ease-in-out;
     width: 100%;
 }
-#anime .data .body .external-links-wrap .hashtag {
+.card-list .data .body .external-links-wrap .hashtag {
     display: inline-block;
     font-size: 1rem;
     margin-bottom: 8px;
 }
-#anime .data .body .external-links-wrap .hashtag:hover {
+.card-list .data .body .external-links-wrap .hashtag:hover {
     color: hsl(215, 81%, 56%);
 }
-#anime .data .body .external-links-wrap .trailer {
+.card-list .data .body .external-links-wrap .trailer {
     align-items: center;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -324,14 +344,14 @@ header .wrap .seasons .season.active .season-year {
 
 /* hover */
 
-#anime .container:hover {
+.card-list .container:hover {
     box-shadow: 0 4px 6px rgba(49, 54, 68, 0.09), 0 10px 40px rgba(49, 54, 68, 0.3);
 }
-#anime .data .body:hover .header {
+.card-list .data .body:hover .header {
     opacity: 0 !important;
     transform: translateX(-100%);
 }
-#anime .data .body:hover .external-links-wrap {
+.card-list .data .body:hover .external-links-wrap {
     opacity: 1;
     transform: translateX(0);
 }
@@ -392,7 +412,7 @@ header .wrap .seasons .season.active .season-year {
 
 /* reponsive */
 @media screen and (max-width: 1560px) {
-    #anime {
+    .card-list {
         grid-column-gap: 20px;
         grid-row-gap: 20px;
     }
@@ -404,7 +424,7 @@ header .wrap .seasons .season.active .season-year {
     }
 }
 @media screen and (max-width: 1345px) {
-    #anime {
+    .card-list {
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 40px;
         grid-row-gap: 40px;
@@ -422,7 +442,7 @@ header .wrap .seasons .season.active .season-year {
     }
 }
 @media screen and (max-width: 1050px) {
-    #anime {
+    .card-list {
         grid-template-columns: 1fr;
     }
     #root > div.main-content > div {

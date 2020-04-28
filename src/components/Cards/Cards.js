@@ -15,16 +15,36 @@ export default class Cards extends Component {
                 behavior: "smooth",
             });
         });
+
+        let selectIdAnime = document.getElementById(e.currentTarget.dataset.id);
+        if (selectIdAnime) {
+            selectIdAnime.classList.remove("active");
+        }
+    };
+    handleMouseEnter = (e) => {
+        let selector = document.getElementById(e.currentTarget.dataset.id);
+        if (selector) {
+            if (!selector.classList.contains("active")) {
+                selector.className += " active";
+            }
+        }
     };
     render() {
         const { data, type } = this.props;
         return (
-            <div id="anime">
+            <div className="card-list">
                 {data
                     .sort((a, b) => (a.popularity > b.popularity ? -1 : 1))
                     .map((element, key) => {
                         return (
-                            <div className="container" key={key} onMouseLeave={this.handleMouseLeave} data-element={`${type}${key}`}>
+                            <div
+                                className="container"
+                                key={key}
+                                onMouseEnter={this.handleMouseEnter}
+                                onMouseLeave={this.handleMouseLeave}
+                                data-element={`${type}${key}`}
+                                data-id={`${element.id}`}
+                            >
                                 <a href={`anime/${element.id}`}>
                                     <img src={element.coverImage.large} alt={element.title.romaji} />
                                     <div className="overlay">

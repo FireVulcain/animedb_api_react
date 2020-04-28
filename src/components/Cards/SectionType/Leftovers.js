@@ -99,7 +99,6 @@ export default class Leftovers extends Component {
             });
     };
     render() {
-        console.log(this.state.data);
         return (
             <section>
                 <h2 className="section-heading">Leftovers</h2>
