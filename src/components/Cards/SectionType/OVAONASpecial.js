@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 /* Components */
-import SkeletonLoader from "./../../Skeleton/Skeleton";
+import SkeletonLoader from "./../../Skeleton/SkeletonCards";
 import Cards from "./../Cards";
 
 export default class OVAONASpecial extends Component {
@@ -27,7 +27,7 @@ export default class OVAONASpecial extends Component {
     };
     async fetchData() {
         let query = `
-            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $excludeFormat: MediaFormat) {
+            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $excludeFormat: MediaFormat, $status : MediaStatus) {
                 Page (page: $page, perPage: $perPage) {
                     pageInfo {
                         total
@@ -36,7 +36,7 @@ export default class OVAONASpecial extends Component {
                         hasNextPage
                         perPage
                     }
-                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, format_not: $excludeFormat) {
+                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, format_not: $excludeFormat, status: $status) {
                         id
                         format
                         source
@@ -85,12 +85,17 @@ export default class OVAONASpecial extends Component {
             }
             `;
         let variables = {
-            season: this.props.season,
-            seasonYear: this.props.year,
+            season: this.props.season ? this.props.season : null,
             page: 1,
             perPage: 50,
             excludeFormat: "TV",
         };
+        if (this.props.year) {
+            variables.seasonYear = this.props.year;
+        }
+        if (this.props.status) {
+            variables.status = this.props.status;
+        }
 
         let allData = [];
         let morePagesAvailable = true;

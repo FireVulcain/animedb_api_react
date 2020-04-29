@@ -492,6 +492,122 @@ const exports = [
             },
         ],
     },
+    {
+        year: "2003",
+        seasons: [
+            {
+                season: "Winter",
+                total: 40,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx202-876AzCrdWaZ7.jpg",
+                color: "#f1ae43",
+            },
+            {
+                season: "Spring",
+                total: 75,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx486-ygOzgiYJJsB9.jpg",
+                color: null,
+            },
+            {
+                season: "Summer",
+                total: 47,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx72-dalTPVFKaOuZ.png",
+                color: "#e45086",
+            },
+            {
+                season: "Fall",
+                total: 60,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx121-JUlbsyhTUNkk.png",
+                color: "#f1860d",
+            },
+        ],
+    },
+    {
+        year: "2002",
+        seasons: [
+            {
+                season: "Winter",
+                total: 42,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx71-Fi08vs7xNBMW.png",
+                color: "#f1ae43",
+            },
+            {
+                season: "Spring",
+                total: 71,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx59-0J95ZHgt4uyP.jpg",
+                color: null,
+            },
+            {
+                season: "Summer",
+                total: 36,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx721-rFSdW50Kl64n.jpg",
+                color: "#e45086",
+            },
+            {
+                season: "Fall",
+                total: 50,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx20-KCjCtnUTsLcu.jpg",
+                color: "#f1860d",
+            },
+        ],
+    },
+    {
+        year: "2001",
+        seasons: [
+            {
+                season: "Winter",
+                total: 47,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b288-QLBdXz8n34yP.png",
+                color: "#f1ae43",
+            },
+            {
+                season: "Spring",
+                total: 62,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/874-wJAeOR3nlQM7.jpg",
+                color: null,
+            },
+            {
+                season: "Summer",
+                total: 41,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx120-yVtxJCg0q2xh.png",
+                color: "#e45086",
+            },
+            {
+                season: "Fall",
+                total: 49,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b270-2N6ql2fxpgEF.jpg",
+                color: "#f1860d",
+            },
+        ],
+    },
+    {
+        year: "2000",
+        seasons: [
+            {
+                season: "Winter",
+                total: 30,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx369-Wb0q6vVlgPjz.png",
+                color: "#f1ae43",
+            },
+            {
+                season: "Spring",
+                total: 44,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx481-pSK35RbaLFDS.png",
+                color: null,
+            },
+            {
+                season: "Summer",
+                total: 41,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/508.jpg",
+                color: "#e45086",
+            },
+            {
+                season: "Fall",
+                total: 28,
+                image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx249-YN54jZrItGgZ.png",
+                color: "#f1860d",
+            },
+        ],
+    },
 ];
 
 export default exports;

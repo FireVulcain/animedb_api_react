@@ -4,6 +4,7 @@ import logo from "./logo.png";
 
 export default class Navbar extends Component {
     render() {
+        const currentYear = new Date().getFullYear();
         return (
             <header id="navbar">
                 <div className="wrap">
@@ -11,24 +12,37 @@ export default class Navbar extends Component {
                         <img src={logo} alt="Logo Site" />
                     </a>
                     <div className="seasons">
-                        <NavLink to="/winter/2020" className="season" activeClassName="active">
+                        <NavLink to={`/winter/${currentYear}`} className="season" activeClassName="active">
                             <div className="season-name">Winter</div>
-                            <div className="season-year">2020</div>
+                            <div className="season-year">{currentYear}</div>
                         </NavLink>
-                        <NavLink to="/spring/2020" className="season" activeClassName="active">
+                        <NavLink to={`/spring/${currentYear}`} className="season" activeClassName="active">
                             <div className="season-name">Spring</div>
-                            <div className="season-year">2020</div>
+                            <div className="season-year">{currentYear}</div>
                         </NavLink>
-                        <NavLink to="/summer/2020" className="season" activeClassName="active">
+                        <NavLink to={`/summer/${currentYear}`} className="season" activeClassName="active">
                             <div className="season-name">Summer</div>
-                            <div className="season-year">2020</div>
+                            <div className="season-year">{currentYear}</div>
                         </NavLink>
-                        <NavLink to="/fall/2020" className="season" activeClassName="active">
+                        <NavLink to={`/fall/${currentYear}`} className="season" activeClassName="active">
                             <div className="season-name">Fall</div>
-                            <div className="season-year">2020</div>
+                            <div className="season-year">{currentYear}</div>
                         </NavLink>
                     </div>
                     <div className="charts">
+                        <NavLink to="/airing" activeClassName="active">
+                            <svg version="1.1" viewBox="0 0 18 18" className="svg-icon" aria-label="Airing" style={{ width: "18px" }}>
+                                <path
+                                    pid="0"
+                                    d="M14.25 3H3.75a1.5 1.5 0 0 0-1.5 1.5V15a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V4.5a1.5 1.5 0 0 0-1.5-1.5zM12 1.5v3M6 1.5v3M2.25 7.5h13.5"
+                                    _stroke="#EDF1F5"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                ></path>
+                            </svg>
+                            <div className="label">Airing</div>
+                        </NavLink>
                         <NavLink to="/archive" activeClassName="active">
                             <svg version="1.1" viewBox="0 0 18 18" className="svg-icon" aria-label="Archive" style={{ width: "18px" }}>
                                 <g clipPath="url(#clip0)" _stroke="#EDF1F5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

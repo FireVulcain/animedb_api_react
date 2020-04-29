@@ -212,3 +212,41 @@ export function externalLinks(externalLinks) {
         }
     });
 }
+
+export function getCurrentWeek() {
+    let current = new Date();
+    current.setHours(23, 59, 59);
+    let weekstart = current.getDate() - current.getDay() + 1;
+    let weekend = weekstart + 7;
+
+    let monday = new Date(current.setDate(weekstart));
+    let sunday = new Date(current.setDate(weekend));
+
+    let mondayTimestamp = Math.round(monday / 1000);
+    let sundayTimestamp = Math.round(sunday / 1000);
+
+    let week = {
+        weekEnd: sundayTimestamp,
+        weekStart: mondayTimestamp,
+    };
+    return week;
+}
+
+export function formatAMPM(date) {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? (hours < 10 ? `0${hours}` : hours) : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let strTime = `${hours}:${minutes} ${ampm}`;
+    return strTime;
+}
+
+export function sortArrByTime(a, b) {
+    let aHours = new Date(a.airingAt * 1000).getHours();
+    let bHours = new Date(b.airingAt * 1000).getHours();
+    if (aHours < bHours) return -1;
+    if (aHours > bHours) return 1;
+    return 0;
+}

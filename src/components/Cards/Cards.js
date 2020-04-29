@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 
 import { Scrollbars } from "react-custom-scrollbars";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 /* Components */
 import Header from "./Header";
 import ExternalLinks from "./ExternalLinks";
 
 export default class Cards extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loaded: false,
-        };
-    }
     handleMouseLeave = (e) => {
         let selector = document.querySelectorAll(`[data-element="${e.currentTarget.dataset.element}"] .data > div > div`);
         selector.forEach((el) => {
@@ -35,12 +31,8 @@ export default class Cards extends Component {
             }
         }
     };
-    handleImageLoaded = () => {
-        this.setState({ loaded: true });
-    };
     render() {
         const { data, type } = this.props;
-        const { loaded } = this.state;
         return (
             <div className="card-list">
                 {data
@@ -57,12 +49,8 @@ export default class Cards extends Component {
                                 data-id={`${element.id}`}
                             >
                                 <a href={`anime/${element.id}`}>
-                                    <img
-                                        onLoad={this.handleImageLoaded}
-                                        className={loaded ? "loaded" : null}
-                                        src={element.coverImage.large}
-                                        alt={element.title.romaji}
-                                    />
+                                    <LazyLoadImage alt={element.title.romaji} height={265} effect="blur" src={element.coverImage.large} />
+
                                     <div className="overlay">
                                         <p className="title">{element.title.romaji}</p>
                                         {element.studios ? (

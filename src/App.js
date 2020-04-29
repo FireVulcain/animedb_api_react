@@ -14,6 +14,7 @@ import Summer from "./pages/Summer";
 import Fall from "./pages/Fall";
 import TBA from "./pages/TBA";
 import Archive from "./pages/Archive";
+import Airing from "./pages/Airing";
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                 ></Route>
                 <Route exact path="/archive" component={Archive} />
                 <Route exact path="/tba" component={TBA} />
+                <Route exact path="/airing" component={Airing} />
             </Switch>
         </Router>
     );

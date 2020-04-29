@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 /* Components */
-import SkeletonLoader from "./../../Skeleton/Skeleton";
+import SkeletonLoader from "./../../Skeleton/SkeletonCards";
 import Cards from "./../Cards";
 
 export default class Leftovers extends Component {
@@ -27,7 +27,7 @@ export default class Leftovers extends Component {
     };
     async fetchData() {
         let query = `
-            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat) {
+            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $excludeFormat: MediaFormat, $status : MediaStatus) {
                 Page (page: $page, perPage: $perPage) {
                     pageInfo {
                         total
@@ -36,7 +36,7 @@ export default class Leftovers extends Component {
                         hasNextPage
                         perPage
                     }
-                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, episodes_greater: 16) {
+                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, episodes_greater: 16, format_not: $excludeFormat, status: $status) {
                         id
                         source
                         popularity
