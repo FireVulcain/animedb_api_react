@@ -133,12 +133,16 @@ export default class TV extends Component {
     populateHeader = () => {
         this.state.data.map((element) => {
             if (element.bannerImage) {
-                var el = document.getElementById("navbar");
-                var elChild = document.createElement("div");
-                elChild.setAttribute("id", element.id);
-                elChild.setAttribute("class", "banner-image");
-                elChild.setAttribute("style", `background-image: url("${element.bannerImage}");`);
-                el.appendChild(elChild);
+                let el = document.getElementById("navbar");
+                if (el) {
+                    let elChild = document.createElement("div");
+                    elChild.setAttribute("id", element.id);
+                    elChild.setAttribute("class", "banner-image");
+                    elChild.setAttribute("style", `background-image: url("${element.bannerImage}");`);
+                    el.appendChild(elChild);
+                } else {
+                    return false;
+                }
             }
             return false;
         });

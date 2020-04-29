@@ -28,6 +28,9 @@ html {
     display: contents !important;
 }
 /* nav */
+.bm-burger-button {
+    display: none;
+}
 header {
     background: #2b2d42;
     color: rgb(var(--color-white));
@@ -55,11 +58,11 @@ header .banner-image {
 header .banner-image.active {
     opacity: 0.1;
 }
-
 header .wrap {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
+    align-items: center;
     margin: 0 12vw;
     position: relative;
     z-index: 30;
@@ -239,6 +242,7 @@ header .wrap .charts a.active .label {
 }
 .card-list .data > div > div:nth-child(1) {
     margin-right: -20px !important;
+    overflow-x: hidden !important;
 }
 .card-list .data > div > div:nth-child(2) {
     display: none !important;
@@ -639,11 +643,124 @@ header .wrap .charts a.active .label {
     }
 }
 @media screen and (max-width: 800px) {
+    /* header mobile */
+    header {
+        display: none;
+    }
+    .bm-overlay,
+    .bm-menu-wrap {
+        margin-top: -30px;
+    }
+    .bm-item-list {
+        position: static;
+        padding: 0.8em;
+    }
+    /* Position and sizing of burger button */
+    .bm-burger-button {
+        display: block;
+        position: fixed;
+        width: 55px;
+        height: 55px;
+        right: 40px;
+        bottom: 25px;
+
+        align-content: center;
+        background: #2b2d42;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(49, 54, 68, 0.05), 0 5px 20px rgba(49, 54, 68, 0.08);
+        color: #fff;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .bm-burger-button > span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Color/shape of burger icon bars */
+    .bm-burger-button > span > span {
+        background: rgb(var(--color-text-bright));
+        position: static !important;
+        display: block;
+        width: 30px;
+        height: 3px !important;
+        margin-bottom: 5px;
+    }
+    .bm-burger-button > span > span:last-of-type {
+        margin-bottom: 0px;
+    }
+
+    /* Color/shape of close button cross */
+    .bm-cross {
+        background: #bdc3c7;
+    }
+
+    /* General sidebar styles */
+    .bm-menu {
+        background: #2b2d42;
+        padding: 2.5em 1.5em 0;
+    }
+
+    /* Morph shape necessary with bubble or elastic */
+    .bm-morph-shape {
+        fill: #2b2d42;
+    }
+
+    /* Wrapper for item list */
+    .bm-item-list .bm-item:focus {
+        outline: 0;
+    }
+    .bm-item-list .othersMenu {
+        margin-top: 30px;
+        border-top: 2px solid rgb(var(--color-foreground-blue));
+        padding-top: 30px;
+    }
+    .bm-item-list a {
+        display: flex !important;
+        align-items: center;
+        color: rgb(var(--color-text));
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .bm-item-list a.active {
+        color: rgb(var(--color-white));
+    }
+
+    .bm-item-list a:hover,
+    .bm-item-list a:focus,
+    .bm-item-list a:active,
+    .bm-item-list a:visited {
+        outline: 0;
+    }
+    .bm-item-list a svg {
+        margin-right: 10px;
+        vertical-align: middle;
+        fill: none;
+        stroke: currentColor;
+        display: inline-block;
+    }
+
     #root > div.main-content > div {
         margin: 0 10px;
     }
     #root > div.main-content > div.archive-view {
         margin: 0 20px;
+    }
+
+    /* home */
+    #root > div.main-content {
+        margin-top: 30px;
+    }
+    .card-list .data > div > div:nth-child(1) {
+        margin-right: 0 !important;
+    }
+    .card-list .data .body .header {
+        grid-template-columns: auto;
+    }
+    .card-list .data .body .header .icon-stats {
+        display: none;
     }
     .archive-view .year .seasons {
         grid-template-columns: repeat(2, 1fr);
