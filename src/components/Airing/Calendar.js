@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import { formatAMPM, sortArrByTime } from "./../../helpers/helpers";
 
 export default class Calendar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            airingNextId: null,
+        };
+    }
+    componentDidMount = () => {
+        const { data } = this.props;
+        this.setState({ airingNextId: this.airingNext(data).id });
+    };
+
     isInPast = (airingAt, episode) => {
         const date1 = new Date(airingAt * 1000);
         const now = new Date();
@@ -24,8 +35,25 @@ export default class Calendar extends Component {
             return false;
         }
     };
+    airingNext = (datas) => {
+        const now = new Date();
+
+        let closest = Infinity;
+
+        datas.forEach(function (data) {
+            const date = new Date(data.airingAt * 1000);
+
+            if (date >= now && (date < new Date(closest.airingAt * 1000) || date < closest)) {
+                closest = data;
+            }
+        });
+
+        return closest;
+    };
+
     render() {
         const { data } = this.props;
+        const { airingNextId } = this.state;
         const daysOrder = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const daysCustomOrder = ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday"];
 
@@ -53,6 +81,7 @@ export default class Calendar extends Component {
                                                         {this.airingNow(element.airingAt, element.media.duration) ? (
                                                             <div className="airing-now">Airing Now</div>
                                                         ) : null}
+                                                        {airingNextId === element.id ? <div className="airing-next">Airing Next</div> : null}
                                                     </div>
                                                 </a>
                                             </div>
