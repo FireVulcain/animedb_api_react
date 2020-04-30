@@ -15,6 +15,7 @@ import Fall from "./pages/Fall";
 import TBA from "./pages/TBA";
 import Archive from "./pages/Archive";
 import Airing from "./pages/Airing";
+import Search from "./pages/Search";
 
 function App() {
     return (
@@ -45,6 +46,7 @@ function App() {
                 <Route exact path="/archive" component={Archive} />
                 <Route exact path="/tba" component={TBA} />
                 <Route exact path="/airing" component={Airing} />
+                <Route exact path="/search" component={Search} />
             </Switch>
         </Router>
     );

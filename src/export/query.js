@@ -1,5 +1,5 @@
 const QUERY = `
-query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $excludeFormat: MediaFormat, $status : MediaStatus, $episodesGreater: Int) {
+query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $excludeFormat: MediaFormat, $status : MediaStatus, $episodesGreater: Int, $search: String) {
     Page (page: $page, perPage: $perPage) {
         pageInfo {
             total
@@ -8,13 +8,14 @@ query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $forma
             hasNextPage
             perPage
         }
-        media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, episodes_greater: $episodesGreater, format_not: $excludeFormat, status: $status) {
+        media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, episodes_greater: $episodesGreater, format_not: $excludeFormat, status: $status, search: $search) {
             id
             format
             source
             popularity
             title {
                 romaji
+                english
             }
             coverImage {
                 large

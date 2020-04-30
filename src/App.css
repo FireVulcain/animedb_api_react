@@ -104,6 +104,7 @@ header .wrap .seasons .season.active .season-year {
     color: #a2a6cd;
 }
 header .wrap .charts {
+    position: relative;
     display: grid;
     grid-gap: 12px;
     grid-template-columns: repeat(4, 1fr);
@@ -129,6 +130,10 @@ header .wrap .charts .label {
 }
 header .wrap .charts a.active .label {
     color: #a2a6cd;
+}
+
+header .wrap .charts .tooltip-search {
+    cursor: pointer;
 }
 
 /* Home */
@@ -603,6 +608,28 @@ header .wrap .charts a.active .label {
     background: rgb(var(--color-blue));
 }
 
+/* Search */
+#root > div.main-content > div.search {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 50%;
+    margin: 50px auto;
+}
+
+.search input {
+    position: relative;
+    background: rgb(var(--color-foreground));
+    border-radius: 3px;
+    border: 0;
+    box-shadow: none;
+    color: rgb(var(--color-text));
+    font-size: 1rem;
+    font-weight: 600;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    width: 100%;
+}
 /* reponsive */
 @media screen and (max-width: 1560px) {
     .card-list {
@@ -753,9 +780,9 @@ header .wrap .charts a.active .label {
     #root > div.main-content {
         margin-top: 30px;
     }
-    .card-list .data > div > div:nth-child(1) {
+    /* .card-list .data > div > div:nth-child(1) {
         margin-right: 0 !important;
-    }
+    } */
     .card-list .data .body .header {
         grid-template-columns: auto;
     }

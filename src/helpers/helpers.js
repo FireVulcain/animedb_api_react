@@ -249,3 +249,7 @@ export function sortArrByTime(a, b) {
     if (aHours > bHours) return 1;
     return 0;
 }
+
+export function sortByPopularity(data) {
+    return data.sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1)).sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
+}

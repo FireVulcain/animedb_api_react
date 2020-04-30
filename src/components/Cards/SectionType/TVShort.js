@@ -7,6 +7,9 @@ import Cards from "./../Cards";
 /* Query */
 import QUERY from "./../../../export/query";
 
+/* helpers */
+import { sortByPopularity } from "./../../../helpers/helpers";
+
 export default class TVShort extends Component {
     _isMounted = false;
     constructor(props) {
@@ -29,7 +32,6 @@ export default class TVShort extends Component {
         }
     };
     async fetchData() {
-        let query = QUERY;
         let variables = {
             season: this.props.season ? this.props.season : null,
             page: 1,
@@ -57,7 +59,7 @@ export default class TVShort extends Component {
                     Accept: "application/json",
                 },
                 body: JSON.stringify({
-                    query: query,
+                    query: QUERY,
                     variables: variables,
                 }),
             };
@@ -68,7 +70,7 @@ export default class TVShort extends Component {
             morePagesAvailable = data.Page.pageInfo.hasNextPage;
         }
         if (this._isMounted) {
-            return this.setState({ data: allData });
+            return this.setState({ data: sortByPopularity(allData) });
         } else {
             return false;
         }

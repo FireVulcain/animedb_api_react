@@ -35,70 +35,67 @@ export default class Cards extends Component {
         const { data, type } = this.props;
         return (
             <div className="card-list">
-                {data
-                    .sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1))
-                    .sort((a, b) => (a.popularity > b.popularity ? -1 : 1))
-                    .map((element, key) => {
-                        return (
-                            <div
-                                className="container"
-                                key={key}
-                                onMouseEnter={this.handleMouseEnter}
-                                onMouseLeave={this.handleMouseLeave}
-                                data-element={`${type}${key}`}
-                                data-id={`${element.id}`}
-                            >
-                                <a href={`anime/${element.id}`}>
-                                    <LazyLoadImage alt={element.title.romaji} height={265} effect="blur" src={element.coverImage.large} />
+                {data.map((element, key) => {
+                    return (
+                        <div
+                            className="container"
+                            key={key}
+                            onMouseEnter={this.handleMouseEnter}
+                            onMouseLeave={this.handleMouseLeave}
+                            data-element={`${type}${key}`}
+                            data-id={`${element.id}`}
+                        >
+                            <a href={`anime/${element.id}`}>
+                                <LazyLoadImage alt={element.title.romaji} height={265} effect="blur" src={element.coverImage.large} />
 
-                                    <div className="overlay">
-                                        <p className="title">{element.title.romaji}</p>
-                                        {element.studios ? (
-                                            element.studios.nodes.length > 0 ? (
-                                                <div className="studio">
-                                                    <p target="_blank" rel="noopener noreferrer">
-                                                        {element.studios.nodes[0].name}
-                                                    </p>
-                                                </div>
-                                            ) : null
-                                        ) : null}
-                                    </div>
-                                </a>
-                                <div className="data">
-                                    <Scrollbars autoHide>
-                                        <div className="scroller">
-                                            <div className="scroller-wrap">
-                                                <div className="body">
-                                                    <Header element={element} index={key} />
-                                                    <ExternalLinks element={element} />
-                                                    <div className="description-wrap">
-                                                        <span
-                                                            className="description"
-                                                            dangerouslySetInnerHTML={{
-                                                                __html: element.description,
-                                                            }}
-                                                        />
-                                                    </div>
+                                <div className="overlay">
+                                    <p className="title">{element.title.romaji}</p>
+                                    {element.studios ? (
+                                        element.studios.nodes.length > 0 ? (
+                                            <div className="studio">
+                                                <p target="_blank" rel="noopener noreferrer">
+                                                    {element.studios.nodes[0].name}
+                                                </p>
+                                            </div>
+                                        ) : null
+                                    ) : null}
+                                </div>
+                            </a>
+                            <div className="data">
+                                <Scrollbars autoHide>
+                                    <div className="scroller">
+                                        <div className="scroller-wrap">
+                                            <div className="body">
+                                                <Header element={element} index={key} />
+                                                <ExternalLinks element={element} />
+                                                <div className="description-wrap">
+                                                    <span
+                                                        className="description"
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: element.description,
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
-                                    </Scrollbars>
+                                    </div>
+                                </Scrollbars>
 
-                                    <div className="footer">
-                                        <div className="genres">
-                                            {element.genres.map((genre, key) => {
-                                                return (
-                                                    <div className="genre" key={key}>
-                                                        {genre}
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
+                                <div className="footer">
+                                    <div className="genres">
+                                        {element.genres.map((genre, key) => {
+                                            return (
+                                                <div className="genre" key={key}>
+                                                    {genre}
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             </div>
-                        );
-                    })}
+                        </div>
+                    );
+                })}
             </div>
         );
     }
