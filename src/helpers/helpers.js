@@ -70,8 +70,8 @@ export function firstAiringDate(date) {
     }
 }
 
-export function currentSeason() {
-    const d = new Date();
+export function currentSeason(date) {
+    const d = date ? new Date(date) : new Date();
     let seasonArray = [
         { name: "SPRING", date: new Date(d.getFullYear(), 2, d.getFullYear() % 4 === 0 ? 19 : 20).getTime(), url: "/spring/2020" },
         { name: "SUMMER", date: new Date(d.getFullYear(), 5, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(), url: "/summer/2020" },
@@ -215,8 +215,7 @@ export function externalLinks(externalLinks) {
 
 export function getCurrentWeek() {
     let current = new Date();
-    current.setHours(23, 59, 59);
-    let weekstart = current.getDate() - current.getDay() + 1;
+    let weekstart = current.getDate() - current.getDay();
     let weekend = weekstart + 7;
 
     let monday = new Date(current.setDate(weekstart));

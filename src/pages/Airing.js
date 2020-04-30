@@ -5,6 +5,8 @@ import { getCurrentWeek } from "./../helpers/helpers";
 import SkeletonLoader from "./../components/Skeleton/SkeletonAiring";
 import Calendar from "../components/Airing/Calendar";
 
+import Head from "./../components/layouts/Head";
+
 export default class Airing extends Component {
     _isMounted = false;
     constructor(props) {
@@ -90,10 +92,19 @@ export default class Airing extends Component {
     }
 
     render() {
+        const description =
+            "Keep track of the airing dates and times of all the anime you're following with the AniChart airing anime calendar. Know exactly when an episode airs!";
         return (
-            <div className="main-content">
-                <div className="airing-view">{!this.state.data.length > 0 ? <SkeletonLoader /> : <Calendar data={this.state.data} />}</div>
-            </div>
+            <Head
+                pageMeta={{
+                    title: `AnimeDB: Airing Anime Calendar`,
+                    description: description,
+                }}
+            >
+                <div className="main-content">
+                    <div className="airing-view">{!this.state.data.length > 0 ? <SkeletonLoader /> : <Calendar data={this.state.data} />}</div>
+                </div>
+            </Head>
         );
     }
 }

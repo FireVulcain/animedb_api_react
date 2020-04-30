@@ -55,7 +55,7 @@ export default class Calendar extends Component {
         const { data } = this.props;
         const { airingNextId } = this.state;
         const daysOrder = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const daysCustomOrder = ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday"];
+        const daysCustomOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
         return (
             <div className="calendar">

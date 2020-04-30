@@ -57,6 +57,11 @@ export default class Leftovers extends Component {
                             month
                             day
                         }
+                        endDate {
+                            year
+                            month
+                            day
+                        }
                         airingSchedule( notYetAired: true perPage: 2) {
                             nodes {
                                 episode airingAt
@@ -78,6 +83,7 @@ export default class Leftovers extends Component {
                                 id name siteUrl
                             }
                         }
+                        status
                     }
                 }
                 
@@ -87,8 +93,6 @@ export default class Leftovers extends Component {
             season: this.props.season,
             seasonYear: this.props.year,
             page: 1,
-            perPage: 50,
-            format: "TV",
         };
 
         let allData = [];
@@ -112,7 +116,11 @@ export default class Leftovers extends Component {
 
             const response = await fetch(window.$url, options);
             let { data } = await response.json();
-            data.Page.media.forEach((e) => allData.push(e));
+            data.Page.media.forEach((e) => {
+                if (e.status !== "FINISHED") {
+                    return allData.push(e);
+                }
+            });
             morePagesAvailable = data.Page.pageInfo.hasNextPage;
         }
         if (this._isMounted) {
