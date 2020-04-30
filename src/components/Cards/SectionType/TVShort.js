@@ -5,7 +5,7 @@ import SkeletonLoader from "./../../Skeleton/SkeletonCards";
 import Cards from "./../Cards";
 
 /* Query */
-import QUERY from "./../../query/query";
+import QUERY from "./../../../export/query";
 
 export default class TVShort extends Component {
     _isMounted = false;
