@@ -4,6 +4,9 @@ import React, { Component } from "react";
 import SkeletonLoader from "./../../Skeleton/SkeletonCards";
 import Cards from "./../Cards";
 
+/* Query */
+import QUERY from "./../../query/query";
+
 export default class Leftovers extends Component {
     _isMounted = false;
     constructor(props) {
@@ -26,73 +29,12 @@ export default class Leftovers extends Component {
         }
     };
     async fetchData() {
-        let query = `
-            query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $format: MediaFormat, $excludeFormat: MediaFormat, $status : MediaStatus) {
-                Page (page: $page, perPage: $perPage) {
-                    pageInfo {
-                        total
-                        currentPage
-                        lastPage
-                        hasNextPage
-                        perPage
-                    }
-                    media (season : $season, seasonYear: $seasonYear, isAdult: false, type: ANIME, format: $format, episodes_greater: 16, format_not: $excludeFormat, status: $status) {
-                        id
-                        source
-                        popularity
-                        title {
-                            romaji
-                        }
-                        coverImage {
-                            large
-                        }
-                        description
-                        genres
-                        nextAiringEpisode{
-                            airingAt
-                        }
-                        episodes
-                        startDate{
-                            year
-                            month
-                            day
-                        }
-                        endDate {
-                            year
-                            month
-                            day
-                        }
-                        airingSchedule( notYetAired: true perPage: 2) {
-                            nodes {
-                                episode airingAt
-                            }
-                        }
-                        averageScore
-                        trailer{
-                            id
-                            thumbnail
-                            site
-                        }
-                        hashtag
-                        externalLinks{
-                            url
-                            site
-                        }
-                        studios(isMain: true) {
-                            nodes {
-                                id name siteUrl
-                            }
-                        }
-                        status
-                    }
-                }
-                
-            }
-            `;
+        let query = QUERY;
         let variables = {
             season: this.props.season,
             seasonYear: this.props.year,
             page: 1,
+            episodesGreater: 16,
         };
 
         let allData = [];
