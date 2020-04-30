@@ -214,19 +214,18 @@ export function externalLinks(externalLinks) {
 }
 
 export function getCurrentWeek() {
-    let current = new Date();
-    let weekstart = current.getDate() - current.getDay();
-    let weekend = weekstart + 7;
+    let curr = new Date();
+    curr.setHours(23, 59, 59);
+    let first = curr.getDate() - curr.getDay();
+    let firstday = new Date(curr.setDate(first));
+    let lastday = new Date(curr.setDate(curr.getDate() + 7));
 
-    let monday = new Date(current.setDate(weekstart));
-    let sunday = new Date(current.setDate(weekend));
-
-    let mondayTimestamp = Math.round(monday / 1000);
-    let sundayTimestamp = Math.round(sunday / 1000);
+    let firstdayTimestamp = Math.round(firstday / 1000);
+    let lastdayTimestamp = Math.round(lastday / 1000);
 
     let week = {
-        weekEnd: sundayTimestamp,
-        weekStart: mondayTimestamp,
+        weekEnd: lastdayTimestamp,
+        weekStart: firstdayTimestamp,
     };
     return week;
 }
