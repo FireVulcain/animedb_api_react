@@ -53,6 +53,9 @@ query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $forma
                     id name siteUrl
                 }
             }
+            rankings {
+                rank type season allTime
+            }
             status
         }
     }

@@ -32,7 +32,7 @@ export default class Cards extends Component {
         }
     };
     render() {
-        const { data, type } = this.props;
+        const { data, type, season } = this.props;
         return (
             <div className="card-list">
                 {data.map((element, key) => {
@@ -66,7 +66,7 @@ export default class Cards extends Component {
                                     <div className="scroller">
                                         <div className="scroller-wrap">
                                             <div className="body">
-                                                <Header element={element} index={key} />
+                                                <Header element={element} season={season} />
                                                 <ExternalLinks element={element} />
                                                 <div className="description-wrap">
                                                     <span

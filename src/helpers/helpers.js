@@ -252,3 +252,30 @@ export function sortArrByTime(a, b) {
 export function sortByPopularity(data) {
     return data.sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1)).sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
 }
+
+export function ranking(datas, season) {
+    if (datas.length > 0) {
+        return datas.map((data, key) => {
+            if (data.type === "POPULAR" && data.season === season) {
+                return (
+                    <div className="icon-stat" key={key}>
+                        <svg version="1.1" viewBox="0 0 18 18" className="svg-icon">
+                            <path
+                                stroke="rgb(var(--color-red))"
+                                fill="none"
+                                pid="0"
+                                d="M15.63 3.458a4.125 4.125 0 0 0-5.835 0L9 4.253l-.795-.795A4.126 4.126 0 1 0 2.37 9.293l.795.795L9 15.922l5.835-5.835.795-.795a4.125 4.125 0 0 0 0-5.835v0z"
+                                _stroke="#EF5C5C"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            ></path>
+                        </svg>
+                        <span className="stat"># {data.rank}</span>
+                    </div>
+                );
+            }
+            return false;
+        });
+    }
+}

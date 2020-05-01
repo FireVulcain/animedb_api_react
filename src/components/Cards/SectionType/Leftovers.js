@@ -74,10 +74,11 @@ export default class Leftovers extends Component {
         }
     }
     render() {
+        const { season } = this.props;
         return (
             <section>
                 <h2 className="section-heading">Leftovers</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="leftovers" />}
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="leftovers" season={season} />}
             </section>
         );
     }

@@ -8,9 +8,9 @@ export default class DesktopMenu extends Component {
         return (
             <header id="navbar">
                 <nav className="wrap">
-                    <a href="/" className="logo-link">
+                    <NavLink to="/" className="logo-link">
                         <img src={logo} alt="Logo Site" />
-                    </a>
+                    </NavLink>
                     <div className="seasons">
                         <NavLink to={`/winter/${currentYear}`} className="season" activeClassName="active">
                             <div className="season-name">Winter</div>

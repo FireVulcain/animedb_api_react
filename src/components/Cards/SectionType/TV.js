@@ -96,10 +96,11 @@ export default class TV extends Component {
         });
     };
     render() {
+        const { season } = this.props;
         return (
             <section>
                 <h2 className="section-heading">TV</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tv" />}
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tv" season={season} />}
             </section>
         );
     }

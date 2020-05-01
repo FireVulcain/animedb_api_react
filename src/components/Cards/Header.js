@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-import { diffBetweenDates, firstAiringDate, airingIn, averageScore } from "./../../helpers/helpers";
+import { diffBetweenDates, firstAiringDate, airingIn, averageScore, ranking } from "./../../helpers/helpers";
 
 class Header extends Component {
     render() {
-        const { element, index } = this.props;
+        const { element, season } = this.props;
         return (
             <div className="header">
                 <div>
@@ -37,21 +37,7 @@ class Header extends Component {
                             <span className="stat">{element.averageScore}%</span>
                         </div>
                     ) : null}
-                    <div className="icon-stat">
-                        <svg version="1.1" viewBox="0 0 18 18" className="svg-icon">
-                            <path
-                                stroke="rgb(var(--color-red))"
-                                fill="none"
-                                pid="0"
-                                d="M15.63 3.458a4.125 4.125 0 0 0-5.835 0L9 4.253l-.795-.795A4.126 4.126 0 1 0 2.37 9.293l.795.795L9 15.922l5.835-5.835.795-.795a4.125 4.125 0 0 0 0-5.835v0z"
-                                _stroke="#EF5C5C"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            ></path>
-                        </svg>
-                        <span className="stat">#{index + 1}</span>
-                    </div>
+                    {ranking(element.rankings, season)}
                 </div>
             </div>
         );
