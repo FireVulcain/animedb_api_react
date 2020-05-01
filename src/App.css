@@ -24,6 +24,13 @@ html {
     box-sizing: border-box;
     text-decoration: none;
 }
+.svg-icon {
+    color: #bcbedc;
+    vertical-align: middle;
+    fill: none;
+    stroke: currentColor;
+    display: inline-block;
+}
 .lazy-load-image-background.blur {
     display: contents !important;
 }
@@ -111,13 +118,6 @@ header .wrap .charts {
     text-align: center;
 }
 
-header .wrap .charts .svg-icon {
-    color: #bcbedc;
-    vertical-align: middle;
-    fill: none;
-    stroke: currentColor;
-    display: inline-block;
-}
 header .wrap .charts a.active .svg-icon {
     color: #ffffff;
 }
@@ -150,20 +150,86 @@ header .wrap .charts .tooltip-search {
 }
 .section-heading {
     display: grid;
-    margin-top: 0;
-    color: rgb(var(--color-white));
-    font-size: 1.5rem;
-    font-weight: 700;
     grid-column-gap: 50px;
     grid-template-columns: repeat(3, minmax(390px, 460px));
     justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-bottom: 20px;
+    color: rgb(var(--color-white));
+}
+.section-heading h2 {
+    color: rgb(var(--color-white));
+    font-size: 1.5rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    margin-top: 0;
+    margin-bottom: 0;
 }
+.section-heading .filters {
+    color: #777a9e;
+    letter-spacing: normal;
+    position: relative;
+    text-align: right;
+}
+.section-heading .filters .tooltip svg {
+    cursor: pointer;
+    margin-left: 20px;
+}
+.section-heading .filters .tooltip .tooltip-text {
+    background-color: #434456;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    left: 99%;
+    letter-spacing: 0.05em;
+    margin-left: -45px;
+    opacity: 0;
+    padding: 5px 0;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    text-transform: none;
+    top: calc(100% + 6px);
+    transition: opacity 75ms ease-in-out;
+    width: 90px;
+    z-index: 1;
+}
+.section-heading .filters .tooltip:hover .tooltip-text {
+    opacity: 1;
+}
+.section-heading .dropdown-menu {
+    background: rgb(var(--color-foreground));
+    border-radius: 3px;
+    box-shadow: 0 4px 6px rgba(49, 54, 68, 0.05), 0 5px 20px rgba(49, 54, 68, 0.08);
+    font-size: 1.2rem;
+    overflow: hidden;
+    padding: 8px 0;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    text-transform: none;
+    z-index: 90;
+}
+.section-heading .dropdown-menu .item {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 4px 16px;
+    transition: background 0.2s, color 0.1s;
+    color: rgb(var(--color-text-light));
+}
+.section-heading .dropdown-menu .item.active {
+    color: rgb(var(--color-blue));
+}
+.section-heading .dropdown-menu .item:hover {
+    background: rgb(var(--color-blue));
+    color: rgb(var(--color-white));
+}
+
+/* card */
 .card-list {
     display: grid;
     grid-column-gap: 50px;

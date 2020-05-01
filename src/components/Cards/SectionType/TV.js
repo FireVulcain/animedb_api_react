@@ -8,7 +8,7 @@ import Cards from "./../Cards";
 import QUERY from "./../../../export/query";
 
 /* helpers */
-import { sortByPopularity } from "./../../../helpers/helpers";
+import { sortBy } from "./../../../helpers/helpers";
 
 export default class TV extends Component {
     _isMounted = false;
@@ -29,6 +29,9 @@ export default class TV extends Component {
         if (prevProps.year !== this.props.year) {
             this.setState({ data: [] });
             this.fetchData();
+        }
+        if (prevProps.filter !== this.props.filter) {
+            this.setState({ data: sortBy(this.state.data, this.props.filter) });
         }
     };
     async fetchData() {
@@ -71,7 +74,7 @@ export default class TV extends Component {
         }
 
         if (this._isMounted) {
-            return this.setState({ data: sortByPopularity(allData) }, () => {
+            return this.setState({ data: sortBy(allData) }, () => {
                 this.populateHeader();
             });
         } else {
@@ -97,11 +100,6 @@ export default class TV extends Component {
     };
     render() {
         const { season } = this.props;
-        return (
-            <section>
-                <h2 className="section-heading">TV</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tv" season={season} />}
-            </section>
-        );
+        return <section>{!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tv" season={season} />}</section>;
     }
 }

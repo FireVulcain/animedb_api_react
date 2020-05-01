@@ -8,7 +8,7 @@ import Cards from "./../Cards";
 import QUERY from "./../../../export/query";
 
 /* helpers */
-import { sortByPopularity } from "./../../../helpers/helpers";
+import { sortBy } from "./../../../helpers/helpers";
 
 export default class OVAONASpecial extends Component {
     _isMounted = false;
@@ -29,6 +29,9 @@ export default class OVAONASpecial extends Component {
         if (prevProps.year !== this.props.year) {
             this.setState({ data: [] });
             this.fetchData();
+        }
+        if (prevProps.filter !== this.props.filter) {
+            this.setState({ data: sortBy(this.state.data, this.props.filter) });
         }
     };
     async fetchData() {
@@ -77,7 +80,7 @@ export default class OVAONASpecial extends Component {
         }
 
         if (this._isMounted) {
-            return this.setState({ data: sortByPopularity(allData) });
+            return this.setState({ data: sortBy(allData) });
         } else {
             return false;
         }

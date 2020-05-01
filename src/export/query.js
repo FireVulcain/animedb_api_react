@@ -32,6 +32,11 @@ query ($page: Int, $perPage: Int, $seasonYear: Int, $season: MediaSeason, $forma
                 month
                 day
             }
+            endDate{
+                year
+                month
+                day
+            }
             airingSchedule( notYetAired: true perPage: 2) {
                 nodes {
                     episode airingAt

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function diffBetweenDates(future, now, startDate) {
+export function diffBetweenDates(future, now) {
     let delta = Math.abs(future - now) / 1000;
 
     let month = Math.floor(delta / 2.628e6);
@@ -38,7 +38,7 @@ export function diffBetweenDates(future, now, startDate) {
         case hours > 0 && minutes > 0:
             return `${hoursText}, ${minutesText}`;
         case hours > 0:
-            return `${daysText}`;
+            return `${hoursText}`;
         case minutes > 0:
             return `${minutesText}`;
         default:
@@ -249,8 +249,64 @@ export function sortArrByTime(a, b) {
     return 0;
 }
 
-export function sortByPopularity(data) {
-    return data.sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1)).sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
+export function sortBy(data, type) {
+    switch (type) {
+        case "title":
+            data.sort((a, b) => (a.title.romaji.toLowerCase().replace(/\W/g, " ") > b.title.romaji.toLowerCase().replace(/\W/g, " ") ? 1 : -1));
+            break;
+        case "nextAiring":
+            data.sort((a, b) => {
+                if (a.airingSchedule.nodes.length > 0 && b.airingSchedule.nodes.length > 0) {
+                    return a.airingSchedule.nodes[0].airingAt > b.airingSchedule.nodes[0].airingAt ? 1 : -1;
+                } else {
+                    let va =
+                            a.airingSchedule.nodes.length > 0
+                                ? a.airingSchedule.nodes[0].airingAt
+                                : a.nextAiringEpisode
+                                ? a.nextAiringEpisode.airingAt
+                                : null,
+                        vb =
+                            b.airingSchedule.nodes.length > 0
+                                ? b.airingSchedule.nodes[0].airingAt
+                                : b.nextAiringEpisode
+                                ? b.nextAiringEpisode.airingAt
+                                : null;
+
+                    return va < vb ? 1 : -1;
+                }
+            });
+            break;
+        case "score":
+            data.sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1)).sort((a, b) => (a.averageScore > b.averageScore ? -1 : 1));
+            break;
+        case "startDate":
+            data.sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1)).sort((a, b) => {
+                if (a.startDate && b.startDate) {
+                    return (
+                        new Date(`${a.startDate.year}-${a.startDate.month}-${a.startDate.day}`) -
+                        new Date(`${b.startDate.year}-${b.startDate.month}-${b.startDate.day}`)
+                    );
+                }
+                return false;
+            });
+            break;
+        case "endDate":
+            data.sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1)).sort((a, b) => {
+                if (a.startDate && b.startDate) {
+                    return (
+                        new Date(`${a.startDate.year}-${a.startDate.month}-${a.startDate.day}`) +
+                        new Date(`${b.startDate.year}-${b.startDate.month}-${b.startDate.day}`)
+                    );
+                }
+                return false;
+            });
+            break;
+        case "popularity":
+        default:
+            data.sort((a, b) => (a.title.romaji > b.title.romaji ? 1 : -1)).sort((a, b) => (a.popularity > b.popularity ? -1 : 1));
+            break;
+    }
+    return data;
 }
 
 export function ranking(datas, season) {
@@ -271,7 +327,7 @@ export function ranking(datas, season) {
                                 strokeLinejoin="round"
                             ></path>
                         </svg>
-                        <span className="stat"># {data.rank}</span>
+                        <span className="stat">#{data.rank}</span>
                     </div>
                 );
             }
