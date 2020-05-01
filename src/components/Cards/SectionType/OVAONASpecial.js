@@ -87,11 +87,10 @@ export default class OVAONASpecial extends Component {
     }
 
     render() {
-        const { season } = this.props;
         return (
             <section>
                 <h2 className="section-heading">OVA / ONA / Special</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="ovaOnaSpecial" season={season} />}
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="ovaOnaSpecial" />}
             </section>
         );
     }

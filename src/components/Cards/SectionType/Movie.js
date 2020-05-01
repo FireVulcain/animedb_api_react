@@ -79,11 +79,10 @@ export default class Movie extends Component {
         }
     }
     render() {
-        const { season } = this.props;
         return (
             <section>
                 <h2 className="section-heading">Movie</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="movie" season={season} />}
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="movie" />}
             </section>
         );
     }

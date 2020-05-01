@@ -4,7 +4,7 @@ import { diffBetweenDates, firstAiringDate, airingIn, averageScore, ranking } fr
 
 class Header extends Component {
     render() {
-        const { element, season } = this.props;
+        const { element } = this.props;
         return (
             <div className="header">
                 <div>
@@ -37,7 +37,7 @@ class Header extends Component {
                             <span className="stat">{element.averageScore}%</span>
                         </div>
                     ) : null}
-                    {ranking(element.rankings, season)}
+                    {ranking(element.rankings)}
                 </div>
             </div>
         );

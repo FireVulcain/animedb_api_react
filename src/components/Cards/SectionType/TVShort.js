@@ -79,11 +79,10 @@ export default class TVShort extends Component {
         }
     }
     render() {
-        const { season } = this.props;
         return (
             <section>
                 <h2 className="section-heading">TV Short</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tvShort" season={season} />}
+                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tvShort" />}
             </section>
         );
     }

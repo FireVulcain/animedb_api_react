@@ -309,10 +309,10 @@ export function sortBy(data, type) {
     return data;
 }
 
-export function ranking(datas, season) {
+export function ranking(datas) {
     if (datas.length > 0) {
         return datas.map((data, key) => {
-            if (data.type === "POPULAR" && data.season === season) {
+            if (data.type === "POPULAR" && data.season !== null) {
                 return (
                     <div className="icon-stat" key={key}>
                         <svg version="1.1" viewBox="0 0 18 18" className="svg-icon">
