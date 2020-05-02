@@ -119,7 +119,7 @@ export default class MobileMenu extends Component {
                         </svg>
                         <div className="label">TBA</div>
                     </NavLink>
-                    <NavLink className="tooltip-search" to="/search" activeClassName="active">
+                    <NavLink className="tooltip-search" to="/search" activeClassName="active" onClick={() => this.closeMenu()}>
                         <svg viewBox="0 0 19 19" className="svg-icon" style={{ width: "18px" }}>
                             <path
                                 pid="0"
