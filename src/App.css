@@ -253,8 +253,7 @@ header .wrap .charts .tooltip-search {
     text-align: left;
     transition: box-shadow 0.6s ease;
 }
-.card-list .container > a {
-    cursor: pointer;
+.card-list .container > .cover {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -623,7 +622,7 @@ header .wrap .charts .tooltip-search {
     position: relative;
     transition: box-shadow 0.6s ease, color 0.2s ease, transform 0.2s ease-in-out;
 }
-.airing-view .calendar .day .cards .airing-card a {
+.airing-view .calendar .day .cards .airing-card > div {
     display: grid;
     grid-template-columns: 50px auto;
     color: rgb(var(--color-text));

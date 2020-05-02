@@ -69,7 +69,7 @@ export default class Calendar extends Component {
                                     if (day === daysOrder[d.getDay()]) {
                                         return (
                                             <div className="airing-card" key={i}>
-                                                <a href={`/anime/${element.media.id}/`} target="_blank" rel="noopener noreferrer">
+                                                <div>
                                                     <img
                                                         src={element.media.coverImage.extraLarge}
                                                         className="image"
@@ -83,7 +83,7 @@ export default class Calendar extends Component {
                                                         ) : null}
                                                         {airingNextId === element.id ? <div className="airing-next">Airing Next</div> : null}
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
                                         );
                                     } else {

@@ -44,7 +44,7 @@ export default class Cards extends Component {
                             data-element={`${type}${key}`}
                             data-id={`${element.id}`}
                         >
-                            <a href={`anime/${element.id}`}>
+                            <div className="cover">
                                 <LazyLoadImage alt={element.title.romaji} height={265} effect="blur" src={element.coverImage.large} />
 
                                 <div className="overlay">
@@ -59,7 +59,7 @@ export default class Cards extends Component {
                                         ) : null
                                     ) : null}
                                 </div>
-                            </a>
+                            </div>
                             <div className="data">
                                 <Scrollbars autoHide>
                                     <div className="scroller">
