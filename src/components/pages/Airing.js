@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import { getCurrentWeek } from "./../helpers/helpers";
+import { getCurrentWeek } from "./../../helpers/helpers";
 
 /* Components */
-import SkeletonLoader from "./../components/Skeleton/SkeletonAiring";
-import Calendar from "../components/Airing/Calendar";
-
-import Head from "./../components/layouts/Head";
+import { SkeletonAiring, Calendar, Head } from "./../";
 
 export default class Airing extends Component {
     _isMounted = false;
@@ -102,7 +99,7 @@ export default class Airing extends Component {
                 }}
             >
                 <div className="main-content">
-                    <div className="airing-view">{!this.state.data.length > 0 ? <SkeletonLoader /> : <Calendar data={this.state.data} />}</div>
+                    <div className="airing-view">{!this.state.data.length > 0 ? <SkeletonAiring /> : <Calendar data={this.state.data} />}</div>
                 </div>
             </Head>
         );

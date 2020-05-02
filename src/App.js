@@ -5,17 +5,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 /* Helpers */
 import { currentSeason } from "./helpers/helpers";
 
-/* Components */
-import Navbar from "./components/Navbar/Navbar";
 /* Page */
-import Winter from "./pages/Winter";
-import Spring from "./pages/Spring";
-import Summer from "./pages/Summer";
-import Fall from "./pages/Fall";
-import TBA from "./pages/TBA";
-import Archive from "./pages/Archive";
-import Airing from "./pages/Airing";
-import Search from "./pages/Search";
+import { Winter, Spring, Summer, Fall, TBA, Archive, Airing, Search, Navbar } from "./components";
 
 function App() {
     return (

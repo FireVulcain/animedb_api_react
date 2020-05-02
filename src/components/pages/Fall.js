@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 
 /* Components */
-import TV from "../components/Cards/SectionType/TV";
-import TVShort from "../components/Cards/SectionType/TVShort";
-import Movie from "../components/Cards/SectionType/Movie";
-import OVAONASpecial from "../components/Cards/SectionType/OVAONASpecial";
-import Leftovers from "../components/Cards/SectionType/Leftovers";
-import Dropdown from "./../components/Cards/Dropdown";
+import { TV, TVShort, Movie, OVAONASpecial, Leftovers, Dropdown, Head } from "./../";
 
-import Head from "./../components/layouts/Head";
-
-export default class Spring extends Component {
+export default class Fall extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,12 +18,11 @@ export default class Spring extends Component {
         const { activeId, filterName } = this.state;
         const { currentSeason, season } = this.props;
         const { year } = this.props.match.params;
-        const description = `Find, track, and share what's airing during the Spring ${year} anime season. Find the top-rated and most popular shows, OVAs, and movies!`;
-
+        let description = `Find, track, and share what's airing during the Fall ${year} anime season. Find the top-rated and most popular shows, OVAs, and movies!`;
         return (
             <Head
                 pageMeta={{
-                    title: `AnimeDB: Spring ${year} Seasonal Chart`,
+                    title: `AnimeDB: Fall ${year} Seasonal Chart`,
                     description: description,
                 }}
             >
@@ -43,7 +35,7 @@ export default class Spring extends Component {
                         </div>
                         <TV season={this.props.season} year={year} filter={filterName} />
                         <TVShort season={this.props.season} year={year} filter={filterName} />
-                        {currentSeason === season ? <Leftovers season="WINTER" year={year} filter={filterName} /> : null}
+                        {currentSeason === season ? <Leftovers season="SUMMER" year={year} filter={filterName} /> : null}
                         <Movie season={this.props.season} year={year} filter={filterName} />
                         <OVAONASpecial season={this.props.season} year={year} filter={filterName} />
                     </div>

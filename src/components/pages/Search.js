@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { DebounceInput } from "react-debounce-input";
 
-/* export */
-import QUERY from "./../export/query";
+/* query */
+import QUERY from "./../../export/query";
 
 /* components */
-import SkeletonLoading from "./../components/Skeleton/SkeletonCards";
-import Cards from "./../components/Cards/Cards";
+import { SkeletonCards, Cards } from "./../";
 
 export default class Search extends Component {
     constructor(props) {
@@ -72,7 +71,7 @@ export default class Search extends Component {
                 <div className="search">
                     <DebounceInput type="text" placeholder="Search Anime" minLength={2} debounceTimeout={1000} onChange={this.handleChange} />
                 </div>
-                <section>{this.state.data.length > 0 ? <Cards data={this.state.data} /> : <SkeletonLoading />}</section>
+                <section>{this.state.data.length > 0 ? <Cards data={this.state.data} /> : <SkeletonCards />}</section>
             </div>
         );
     }

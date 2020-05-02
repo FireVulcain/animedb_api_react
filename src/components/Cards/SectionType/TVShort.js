@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 /* Components */
-import SkeletonLoader from "./../../Skeleton/SkeletonCards";
-import Cards from "./../Cards";
+import { Cards, SkeletonCards } from "./../../";
 
 /* Query */
 import QUERY from "./../../../export/query";
@@ -82,7 +81,7 @@ export default class TVShort extends Component {
         return (
             <section>
                 <h2 className="section-heading">TV Short</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="tvShort" />}
+                {!this.state.data.length > 0 ? <SkeletonCards /> : <Cards data={this.state.data} type="tvShort" />}
             </section>
         );
     }

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-import exports from "./../export/exports";
+import exports from "./../../export/exports";
 
-import Head from "./../components/layouts/Head";
+import { Head } from "./..";
 
 export default class Archive extends Component {
     componentDidMount = () => {

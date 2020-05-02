@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
-import MobileMenu from "./MobileMenu";
-import DesktopMenu from "./DesktopMenu";
+import { MobileMenu, DesktopMenu } from "./../";
 
 export default class Navbar extends Component {
     constructor() {

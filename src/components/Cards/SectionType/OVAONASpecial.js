@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 /* Components */
-import SkeletonLoader from "./../../Skeleton/SkeletonCards";
-import Cards from "./../Cards";
+import { Cards, SkeletonCards } from "./../../";
 
 /* Query */
 import QUERY from "./../../../export/query";
@@ -90,7 +89,7 @@ export default class OVAONASpecial extends Component {
         return (
             <section>
                 <h2 className="section-heading">OVA / ONA / Special</h2>
-                {!this.state.data.length > 0 ? <SkeletonLoader /> : <Cards data={this.state.data} type="ovaOnaSpecial" />}
+                {!this.state.data.length > 0 ? <SkeletonCards /> : <Cards data={this.state.data} type="ovaOnaSpecial" />}
             </section>
         );
     }
