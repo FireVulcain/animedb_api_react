@@ -19,6 +19,7 @@
 body,
 html {
     background: rgb(var(--color-background));
+    overflow-x: hidden;
 }
 * {
     box-sizing: border-box;
@@ -849,7 +850,9 @@ header .wrap .charts .tooltip-search {
     #root > div.main-content {
         margin-top: 30px;
     }
-
+    .card-list .data > div > div:nth-child(1) {
+        margin-right: 0 !important;
+    }
     .card-list .data .body .header {
         grid-template-columns: auto;
     }
