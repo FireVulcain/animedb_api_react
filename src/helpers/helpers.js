@@ -216,12 +216,12 @@ export function externalLinks(externalLinks) {
 export function getCurrentWeek() {
     let getDay = [];
     getDay[0] = 7;
-    getDay[1] = 6;
-    getDay[2] = 5;
-    getDay[3] = 4;
-    getDay[4] = 3;
-    getDay[5] = 2;
-    getDay[6] = 1;
+    getDay[1] = 1;
+    getDay[2] = 2;
+    getDay[3] = 3;
+    getDay[4] = 4;
+    getDay[5] = 5;
+    getDay[6] = 6;
 
     let curr = new Date();
     curr.setHours(23, 59, 59);
@@ -245,7 +245,7 @@ export function formatAMPM(date) {
     let minutes = date.getMinutes();
     let ampm = hours >= 12 ? "PM" : "AM";
     hours = hours % 12;
-    hours = hours ? (hours < 10 ? `0${hours}` : hours) : 12; // the hour '0' should be '12'
+    hours = hours ? (hours < 10 ? `0${hours}` : hours) : 12;
     minutes = minutes < 10 ? `0${minutes}` : minutes;
     let strTime = `${hours}:${minutes} ${ampm}`;
     return strTime;
