@@ -73,12 +73,16 @@ export function firstAiringDate(date) {
 export function currentSeason(date) {
     const d = date ? new Date(date) : new Date();
     let seasonArray = [
-        { name: "SPRING", date: new Date(d.getFullYear(), 2, d.getFullYear() % 4 === 0 ? 19 : 20).getTime(), url: "/spring/2020" },
-        { name: "SUMMER", date: new Date(d.getFullYear(), 5, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(), url: "/summer/2020" },
-        { name: "FALL", date: new Date(d.getFullYear(), 8, d.getFullYear() % 4 === 0 ? 22 : 23).getTime(), url: "/fall/2020" },
-        { name: "WINTER", date: new Date(d.getFullYear(), 11, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(), url: "/winter/2020" },
+        { name: "SPRING", date: new Date(d.getFullYear(), 2, d.getFullYear() % 4 === 0 ? 19 : 20).getTime(), url: `/spring/${d.getFullYear()}` },
+        { name: "SUMMER", date: new Date(d.getFullYear(), 5, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(), url: `/summer/${d.getFullYear()}` },
+        { name: "FALL", date: new Date(d.getFullYear(), 8, d.getFullYear() % 4 === 0 ? 22 : 23).getTime(), url: `/fall/${d.getFullYear()}` },
+        { name: "WINTER", date: new Date(d.getFullYear(), 11, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(), url: `/winter/${d.getFullYear()}` },
     ];
-    const season = seasonArray.filter(({ date }) => date <= d).slice(-1)[0];
+    const season = seasonArray.filter(({ date }) => date <= d).slice(-1)[0] || {
+        name: "WINTER",
+        date: new Date(d.getFullYear(), 11, d.getFullYear() % 4 === 0 ? 20 : 21).getTime(),
+        url: `/winter/${d.getFullYear()}`,
+    };
     return season;
 }
 
